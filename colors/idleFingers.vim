@@ -1,4 +1,4 @@
-" vim: set tw=0 sw=2 sts=2 et:
+" vim: set tw=2 sw=2 sts=2 et:
 "
 " idleFingers Vim Colorsheme
 " This file attempts to match the Textmate color scheme idleFingers 
