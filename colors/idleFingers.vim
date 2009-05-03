@@ -32,7 +32,7 @@ hi Folded               guifg=#000000 guibg=#bdb76b
 hi FoldColumn           guifg=#000000 guibg=#bdb76b
 hi SignColumn           gui=bold guifg=#bdb76b guibg=#20b2aa
 hi IncSearch            gui=bold guifg=#000000 guibg=#D8D8D8
-hi LineNr               gui=bold guifg=#bdb76b guibg=#528b8b
+hi LineNr               gui=bold guifg=#888888 
 hi ModeMsg              gui=bold
 hi MoreMsg              gui=bold guifg=#20b2aa
 hi NonText              gui=bold guifg=#D8D8D8
