@@ -1,12 +1,13 @@
-" vim: set tw=0 sw=4 sts=4 et:
+" vim: set tw=0 sw=2 sts=2 et:
+"
+" idleFingers Vim Colorsheme
+" This file attempts to match the Textmate color scheme idleFingers 
+" (http://idlefingers.co.uk/)
+" 
+" This file was NOT created by the maintainer of idleFingers, it just
+" tries to copy the color style for MacVim usage.
 
-" Vim color file
-" Maintainer: Tuomas Susi <tsusi@cc.hut.fi>
-" Last Change: 2004 October 05
-" Version: 1.7
-
-" Init stuff
-
+" Init
 set background=dark
 hi clear
 if exists("syntax_on")
