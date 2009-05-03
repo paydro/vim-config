@@ -43,7 +43,7 @@ hi SpecialKey           guifg=#00ffff
 hi StatusLine           gui=bold guifg=#f0e68c guibg=#000000
 hi StatusLineNC         guibg=#f0e68c guifg=#666666
 hi Title                gui=bold guifg=#ff6347
-hi Visual               guifg=#000000 guibg=fg
+hi Visual               guibg=#666666
 hi VisualNOS            gui=bold guifg=#000000 guibg=fg
 hi WarningMsg           guifg=#D8D8D8 guibg=#ff6347
 hi WildMenu             gui=bold guifg=#000000 guibg=#ffff00
