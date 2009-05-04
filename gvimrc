@@ -16,8 +16,8 @@ filetype on
 filetype indent on
 
 " Default window size
-set lines=40
-set columns=110
+set lines=50
+set columns=150
 
 " Indenting preferences
 set smartindent
@@ -47,9 +47,7 @@ if has("autocmd")
 endif
 
 " FuzzyFinder Textmate
-" Unmap Apple+T
-macmenu &File.New\ Tab key=<nop>
+map <Leader>t :FuzzyFinderTextMate<CR>
 
-" Map Apple+T to open FuzzyFinder
-nnoremap <D-t> :FuzzyFinderTextMate<CR>
-
+" Map <leader>p to NERDtree
+map <Leader>p :NERDTreeToggle<CR>
