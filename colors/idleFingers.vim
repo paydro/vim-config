@@ -101,7 +101,7 @@ hi Error                gui=bold guifg=#D8D8D8 guibg=#ff0000
 hi Todo                 gui=bold guifg=#323232 guibg=#BC9458
 
 " Ruby syntax
-hi link rubyConditionalExpression Operator
+hi rubyConditionalExpression guifg=#D8D8D8
 hi rubyMethod           guifg=#D8D8D8
 hi rubyInstanceVariable guifg=#B7DFF8
 hi rubyRailsMethod      guifg=#B83426
