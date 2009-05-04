@@ -194,10 +194,11 @@ syn cluster rubyDeclaration	contains=rubyAliasDeclaration,rubyAliasDeclaration2,
 " begin case class def do end for if module unless until while
 syn match   rubyControl		"\<\%(and\|break\|in\|next\|not\|or\|redo\|rescue\|retry\|return\)\>[?!]\@!"
 syn match   rubyOperator	"\<defined?" display
-syn match   rubyKeyword		"\<\%(super\|yield\)\>[?!]\@!"
+syn match   rubyKeyword		"\<\%(super\|yield\)\>[?!]\@!" 
 syn match   rubyBoolean		"\<\%(true\|false\)\>[?!]\@!"
 syn match   rubyPseudoVariable	"\<\%(nil\|self\|__FILE__\|__LINE__\)\>[?!]\@!"
 syn match   rubyBeginEnd	"\<\%(BEGIN\|END\)\>[?!]\@!"
+syn keyword rubyKeyword		new
 
 " Expensive Mode - match 'end' with the appropriate opening keyword for syntax
 " based folding and special highlighting of module/class/method definitions
