@@ -29,6 +29,8 @@ set autoindent
 " Set font
 set guifont=ProFontX:h9
 
+let ruby_operators=1
+
 " Disable to beep on errors
 set vb t_vb=
 
@@ -54,3 +56,4 @@ map <Leader>t :FuzzyFinderTextMate<CR>
 
 " Map <leader>p to NERDtree
 map <Leader>p :NERDTreeToggle<CR>
+
