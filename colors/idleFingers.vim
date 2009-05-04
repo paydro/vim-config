@@ -19,7 +19,7 @@ let g:colors_name = "idleFingers"
 
 " GUI colors
 
-hi Cursor               guifg=#000000 guibg=#91FF00
+hi Cursor               guibg=#91FF00
 hi CursorIM             guifg=NONE guibg=#ff83fa
 hi Directory            guifg=#e0ffff
 hi DiffAdd              guibg=#528b8b
