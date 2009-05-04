@@ -9,6 +9,9 @@ set shiftwidth=2
 set expandtab
 set sts=2
 
+" Line numbers
+set number
+
 " Hide menubar
 set go-=T
 
