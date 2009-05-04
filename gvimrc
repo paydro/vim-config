@@ -29,6 +29,8 @@ set autoindent
 " Set font
 set guifont=ProFontX:h9
 
+"let ruby_operators=1
+
 " Disable to beep on errors
 set vb t_vb=
 
@@ -50,8 +52,12 @@ if has("autocmd")
 endif
 
 " FuzzyFinder Textmate
+" (backslash)t
 map <Leader>t :FuzzyFinderTextMate<CR>
 
 " Map <leader>p to NERDtree
+" (backslash)p
 map <Leader>p :NERDTreeToggle<CR>
 
+" Reduce number of entries found for speed
+let g:FuzzyFinderOptions.Base.enumerating_limit = 25
