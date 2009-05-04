@@ -1,5 +1,3 @@
-" vim: set tw=2 sw=2 sts=2 et:
-"
 " idleFingers Vim Colorsheme
 " This file attempts to match the Textmate color scheme idleFingers 
 " (http://idlefingers.co.uk/)
@@ -27,7 +25,7 @@ hi DiffChange           guibg=#8b636c
 hi DiffDelete           gui=bold guifg=fg guibg=#000000
 hi DiffText             gui=bold guibg=#6959cd
 hi ErrorMsg             gui=bold guifg=#D8D8D8 guibg=#ff0000
-hi VertSplit            gui=bold guifg=#bdb76b guibg=#000000
+hi VertSplit            guifg=#323232 guibg=#f0e68c
 hi Folded               guifg=#000000 guibg=#bdb76b
 hi FoldColumn           guifg=#000000 guibg=#bdb76b
 hi SignColumn           gui=bold guifg=#bdb76b guibg=#20b2aa
@@ -158,4 +156,8 @@ hi link javaScriptBraces Normal
 hi link javaScript Normal
 hi link javaScriptStatement Keyword
 hi link javaScriptFunction Keyword
+
+" NERDTree coloring
+hi treeDir guifg=#FFC66D 
+hi treeDirSlash guifg=#FFC66D
 
