@@ -14,6 +14,10 @@ endif
 
 let g:colors_name = "idleFingers"
 
+" Allows ruby syntax highlighting for operators
+" NOTE: There are some additions to the syntax/ruby.vim to allow for
+"       idleFingers colorscheme to work.  
+let ruby_operators=1
 
 " GUI colors
 

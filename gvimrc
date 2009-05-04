@@ -19,8 +19,8 @@ filetype on
 filetype indent on
 
 " Default window size
-set lines=50
-set columns=150
+set lines=60
+set columns=130
 
 " Indenting preferences
 set smartindent
@@ -28,8 +28,6 @@ set autoindent
 
 " Set font
 set guifont=ProFontX:h9
-
-let ruby_operators=1
 
 " Disable to beep on errors
 set vb t_vb=
