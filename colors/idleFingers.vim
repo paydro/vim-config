@@ -17,7 +17,7 @@ let g:colors_name = "idleFingers"
 " Allows ruby syntax highlighting for operators
 " NOTE: There are some additions to the syntax/ruby.vim to allow for
 "       idleFingers colorscheme to work.  
-let ruby_operators=1
+let ruby_operators=0
 
 " GUI colors
 
@@ -26,29 +26,29 @@ hi CursorIM             guifg=NONE guibg=#ff83fa
 hi Directory            guifg=#e0ffff
 hi DiffAdd              guibg=#528b8b
 hi DiffChange           guibg=#8b636c
-hi DiffDelete           gui=bold guifg=fg guibg=#000000
-hi DiffText             gui=bold guibg=#6959cd
-hi ErrorMsg             gui=bold guifg=#D8D8D8 guibg=#ff0000
+hi DiffDelete           guifg=fg guibg=#000000
+hi DiffText             guibg=#6959cd
+hi ErrorMsg             guifg=#D8D8D8 guibg=#ff0000
 hi VertSplit            guifg=#323232 guibg=#f0e68c
 hi Folded               guifg=#000000 guibg=#bdb76b
 hi FoldColumn           guifg=#000000 guibg=#bdb76b
-hi SignColumn           gui=bold guifg=#bdb76b guibg=#20b2aa
-hi IncSearch            gui=bold guifg=#000000 guibg=#D8D8D8
-hi LineNr               gui=bold guifg=#888888 
-hi ModeMsg              gui=bold
-hi MoreMsg              gui=bold guifg=#20b2aa
-hi NonText              gui=bold guifg=#D8D8D8
+hi SignColumn           guifg=#bdb76b guibg=#20b2aa
+hi IncSearch            guifg=#000000 guibg=#D8D8D8
+hi LineNr               guifg=#888888 
+hi ModeMsg              
+hi MoreMsg              guifg=#20b2aa
+hi NonText              guifg=#D8D8D8
 hi Normal               guibg=#323232 guifg=#D8D8D8
-hi Question             gui=bold guifg=#ff6347
-hi Search               gui=bold guifg=#000000 guibg=#ffd700
+hi Question             guifg=#ff6347
+hi Search               guifg=#000000 guibg=#ffd700
 hi SpecialKey           guifg=#00ffff
-hi StatusLine           gui=bold guifg=#f0e68c guibg=#000000
+hi StatusLine           guifg=#f0e68c guibg=#000000
 hi StatusLineNC         guibg=#f0e68c guifg=#666666
-hi Title                gui=bold guifg=#ff6347
+hi Title                guifg=#ff6347
 hi Visual               guibg=#666666
-hi VisualNOS            gui=bold guifg=#000000 guibg=fg
+hi VisualNOS            guifg=#000000 guibg=fg
 hi WarningMsg           guifg=#D8D8D8 guibg=#ff6347
-hi WildMenu             gui=bold guifg=#000000 guibg=#ffff00
+hi WildMenu             guifg=#000000 guibg=#ffff00
 
 
 " Colors for syntax highlighting
@@ -64,13 +64,13 @@ hi Constant             guifg=#6C99BB
 hi Identifier           guifg=#afeeee
     hi Function         guifg=#FFF980
 
-hi Statement            gui=bold guifg=#FFC66D
-    hi Conditional      gui=bold guifg=#CC7833 
-    hi Repeat           gui=bold guifg=#CC7833
-    hi Label            gui=bold guifg=#CC7833
-    hi Operator         gui=bold guifg=#CC7833
-    hi Keyword          gui=bold guifg=#CC7833
-    hi Exception        gui=bold guifg=#CC7833
+hi Statement            guifg=#FFC66D
+    hi Conditional      guifg=#CC7833 
+    hi Repeat           guifg=#CC7833
+    hi Label            guifg=#CC7833
+    hi Operator         guifg=#CC7833
+    hi Keyword          guifg=#CC7833
+    hi Exception        guifg=#CC7833
 
 hi PreProc              guifg=#CC7833
     hi Include          guifg=#CC7833
@@ -78,7 +78,7 @@ hi PreProc              guifg=#CC7833
     hi Macro            guifg=#CC7833
     hi PreCondit        guifg=#CC7833
 
-hi Type                 gui=bold guifg=#FFF980
+hi Type                 guifg=#FFF980
     hi StorageClass     guifg=#FFF980
     hi Structure        guifg=#FFF980
 
@@ -87,18 +87,18 @@ hi Special              guifg=#ff6347
     hi SpecialChar      gui=underline guifg=#7fffd4
     hi Tag              guifg=#ff6347
     "Statement
-    hi Delimiter        gui=bold guifg=#D8D8D8
+    hi Delimiter        guifg=#D8D8D8
     " Bold comment (in Java at least)
-    hi SpecialComment   gui=bold guifg=#da70d6
-    hi Debug            gui=bold guifg=#ff0000
+    hi SpecialComment   guifg=#da70d6
+    hi Debug            guifg=#ff0000
 
 hi Underlined           gui=underline
 
 hi Ignore               guifg=bg
 
-hi Error                gui=bold guifg=#D8D8D8 guibg=#ff0000
+hi Error                guifg=#D8D8D8 guibg=#ff0000
 
-hi Todo                 gui=bold guifg=#323232 guibg=#BC9458
+hi Todo                 guifg=#323232 guibg=#BC9458
 
 " Ruby syntax
 hi link rubyConditionalExpression Operator
