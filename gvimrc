@@ -1,6 +1,7 @@
 set nocompatible
 
 colorscheme idleFingers
+set linespace=2
 
 syntax on
 
@@ -10,7 +11,7 @@ set expandtab
 set sts=2
 
 " Line numbers
-set number
+set nonumber
 
 " Hide menubar
 set go-=T
@@ -19,17 +20,19 @@ filetype on
 filetype indent on
 
 " Default window size
-set lines=60
-set columns=130
+set lines=45
+set columns=90
 
 " Indenting preferences
 set smartindent
 set autoindent
 
 " Set font
-set guifont=ProFontX:h9
+"set guifont=ProFontX:h9
+"set guifont=Menlo:h11
+set guifont=Bitstream_Vera_Sans_Mono:h11
 
-"let ruby_operators=1
+"let ruby_operators=0
 
 " Disable to beep on errors
 set vb t_vb=
@@ -39,6 +42,7 @@ set ruler
 
 " Incremental search
 set incsearch
+
 " make searches case-insensitive, unless they contain upper-case letters
 set ignorecase
 set smartcase
@@ -59,5 +63,18 @@ map <Leader>t :FuzzyFinderTextMate<CR>
 " (backslash)p
 map <Leader>p :NERDTreeToggle<CR>
 
+
+" FuzzyFinderTexmate Options
+" --------------------------
 " Reduce number of entries found for speed
 let g:FuzzyFinderOptions.Base.enumerating_limit = 25
+" Increase number of files FuzzyFinder can load
+let g:fuzzy_ceiling = 40000
+
+autocmd! BufNewFile,BufReadPre,FileReadPre  *.js    so ~/.vim/javascript.vim
+
+" Remove all trailing whitespaces when saving a file
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Lesscss files (*.less)
+au BufNewFile,BufRead *.less set filetype=less
