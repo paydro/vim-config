@@ -17,11 +17,11 @@ let g:colors_name = "idleFingers"
 " Allows ruby syntax highlighting for operators
 " NOTE: There are some additions to the syntax/ruby.vim to allow for
 "       idleFingers colorscheme to work.  
-let ruby_operators=0
+"let ruby_operators=0
 
 " GUI colors
 
-hi Cursor               guibg=#91FF00
+hi Cursor               guibg=#FFFFFF
 hi CursorIM             guifg=NONE guibg=#ff83fa
 hi Directory            guifg=#e0ffff
 hi DiffAdd              guibg=#528b8b
@@ -35,10 +35,11 @@ hi FoldColumn           guifg=#000000 guibg=#bdb76b
 hi SignColumn           guifg=#bdb76b guibg=#20b2aa
 hi IncSearch            guifg=#000000 guibg=#D8D8D8
 hi LineNr               guifg=#888888 
-hi ModeMsg              
+hi MatchParen           guifg=#FFFFFF guibg=#666666
+hi ModeMsg              gui=NONE
 hi MoreMsg              guifg=#20b2aa
 hi NonText              guifg=#D8D8D8
-hi Normal               guibg=#323232 guifg=#D8D8D8
+hi Normal               guibg=#282828 guifg=#D8D8D8
 hi Question             guifg=#ff6347
 hi Search               guifg=#000000 guibg=#ffd700
 hi SpecialKey           guifg=#00ffff
@@ -54,7 +55,7 @@ hi WildMenu             guifg=#000000 guibg=#ffff00
 " Colors for syntax highlighting
 hi Comment              guifg=#BC9458
 
-hi Constant             guifg=#6C99BB
+hi Constant             guifg=#6C99BB gui=NONE
     hi String           guifg=#A5C261
     hi Character        guifg=#6C99BB
     hi Number           guifg=#6C99BB
@@ -62,7 +63,7 @@ hi Constant             guifg=#6C99BB
     hi Float            guifg=#6C99BB
 
 hi Identifier           guifg=#afeeee
-    hi Function         guifg=#FFF980
+    hi Function         guifg=#FFF980 gui=NONE
 
 hi Statement            guifg=#FFC66D
     hi Conditional      guifg=#CC7833 
@@ -74,11 +75,11 @@ hi Statement            guifg=#FFC66D
 
 hi PreProc              guifg=#CC7833
     hi Include          guifg=#CC7833
-    hi Define           guifg=#CC7833
+    hi Define           guifg=#CC7833 gui=NONE
     hi Macro            guifg=#CC7833
     hi PreCondit        guifg=#CC7833
 
-hi Type                 guifg=#FFF980
+hi Type                 guifg=#FFF980 gui=NONE
     hi StorageClass     guifg=#FFF980
     hi Structure        guifg=#FFF980
 
@@ -117,6 +118,7 @@ hi clear rubyBracketOperator
 
 " Rails
 hi railsStringSpecial guifg=#6EA533
+hi railsMethod guifg=#B83426
 
 " ERuby syntax
 hi erubyRailsMethod     guifg=#B83426
