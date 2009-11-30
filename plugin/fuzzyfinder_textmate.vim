@@ -50,6 +50,14 @@ endfunction
 
 command! -bang -narg=? -complete=file   FuzzyFinderTextMate   call FuzzyFinderTextMateLauncher(<q-args>, len(<q-bang>))
 
+command FuzzyFinderTextMateRescan call FuzzyFinderTextMateRescan()
+
+function! FuzzyFinderTextMateRescan()
+ruby << RUBY
+  finder.rescan!
+RUBY
+endfunction
+
 function! InstantiateTextMateMode() "{{{
 ruby << RUBY
   begin
