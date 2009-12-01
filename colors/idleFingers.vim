@@ -1,7 +1,7 @@
 " idleFingers Vim Colorsheme
-" This file attempts to match the Textmate color scheme idleFingers 
+" This file attempts to match the Textmate color scheme idleFingers
 " (http://idlefingers.co.uk/)
-" 
+"
 " This file was NOT created by the maintainer of idleFingers, it just
 " tries to copy the color style for MacVim usage.
 
@@ -16,7 +16,7 @@ let g:colors_name = "idleFingers"
 
 " Allows ruby syntax highlighting for operators
 " NOTE: There are some additions to the syntax/ruby.vim to allow for
-"       idleFingers colorscheme to work.  
+"       idleFingers colorscheme to work.
 "let ruby_operators=0
 
 " GUI colors
@@ -30,11 +30,11 @@ hi DiffDelete           guifg=fg guibg=#000000
 hi DiffText             guibg=#6959cd
 hi ErrorMsg             guifg=#D8D8D8 guibg=#ff0000
 hi VertSplit            guifg=#323232 guibg=#f0e68c
-hi Folded               guifg=#000000 guibg=#bdb76b
+hi Folded               guifg=#999999 guibg=#444444
 hi FoldColumn           guifg=#000000 guibg=#bdb76b
 hi SignColumn           guifg=#bdb76b guibg=#20b2aa
 hi IncSearch            guifg=#000000 guibg=#D8D8D8
-hi LineNr               guifg=#888888 
+hi LineNr               guifg=#888888
 hi MatchParen           guifg=#FFFFFF guibg=#666666
 hi ModeMsg              gui=NONE
 hi MoreMsg              guifg=#20b2aa
@@ -66,7 +66,7 @@ hi Identifier           guifg=#afeeee
     hi Function         guifg=#FFF980 gui=NONE
 
 hi Statement            guifg=#FFC66D
-    hi Conditional      guifg=#CC7833 
+    hi Conditional      guifg=#CC7833
     hi Repeat           guifg=#CC7833
     hi Label            guifg=#CC7833
     hi Operator         guifg=#CC7833
@@ -100,6 +100,10 @@ hi Ignore               guifg=bg
 hi Error                guifg=#D8D8D8 guibg=#ff0000
 
 hi Todo                 guifg=#323232 guibg=#BC9458
+
+" Helps colorize FuzzyFileFinder
+hi Pmenu                guibg=#999999 guifg=#000000
+hi PmenuSel             guibg=#333333 guifg=#CCCCCC
 
 " Ruby syntax
 hi rubyConditionalExpression guifg=#D8D8D8
@@ -166,6 +170,6 @@ hi link javaScriptStatement Keyword
 hi link javaScriptFunction Keyword
 
 " NERDTree coloring
-hi treeDir guifg=#FFC66D 
+hi treeDir guifg=#FFC66D
 hi treeDirSlash guifg=#FFC66D
 
