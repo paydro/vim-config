@@ -63,6 +63,9 @@ map <Leader>t :FuzzyFinderTextMate<CR>
 " (backslash)p
 map <Leader>p :NERDTreeToggle<CR>
 
+" Use TextMate's commenting shortcut
+map <D-/> <plug>NERDCommenterToggle
+
 " NERD_commenters
 let NERDSpaceDelims=1
 
