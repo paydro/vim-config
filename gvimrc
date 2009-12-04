@@ -63,6 +63,8 @@ map <Leader>t :FuzzyFinderTextMate<CR>
 " (backslash)p
 map <Leader>p :NERDTreeToggle<CR>
 
+" NERD_commenters
+let NERDSpaceDelims=1
 
 " FuzzyFinderTexmate Options
 " --------------------------
@@ -70,8 +72,6 @@ map <Leader>p :NERDTreeToggle<CR>
 let g:FuzzyFinderOptions.Base.enumerating_limit = 25
 " Increase number of files FuzzyFinder can load
 let g:fuzzy_ceiling = 40000
-
-autocmd! BufNewFile,BufReadPre,FileReadPre  *.js    so ~/.vim/javascript.vim
 
 " Remove all trailing whitespaces when saving a file
 autocmd BufWritePre * :%s/\s\+$//e
