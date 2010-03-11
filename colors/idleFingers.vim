@@ -119,6 +119,7 @@ hi link rubyBeginEnd Keyword
 hi link rubyEval Keyword
 hi link rubyException Keyword
 hi clear rubyBracketOperator
+hi link rubyInvalidVariable rubyInstanceVariable
 
 " Rails
 hi railsStringSpecial guifg=#6EA533
