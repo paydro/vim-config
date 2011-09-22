@@ -1,3 +1,11 @@
 .DS_Store
 *.swp
 .netrwhist
+ruby/command-t/Makefile
+ruby/command-t/ext.bundle
+ruby/command-t/ext.o
+ruby/command-t/match.o
+ruby/command-t/matcher.o
+ruby/command-t/mkmf.log
+doc/*
+**/doc/*
