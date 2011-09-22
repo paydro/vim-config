@@ -35,7 +35,7 @@ hi FoldColumn           guifg=#000000 guibg=#bdb76b
 hi SignColumn           guifg=#bdb76b guibg=#20b2aa
 hi IncSearch            guifg=#000000 guibg=#D8D8D8
 hi LineNr               guifg=#888888
-hi MatchParen           guifg=#FFFFFF guibg=#666666
+hi MatchParen           guifg=#FFFFFF guibg=#666666 gui=bold
 hi ModeMsg              gui=NONE
 hi MoreMsg              guifg=#20b2aa
 hi NonText              guifg=#D8D8D8
@@ -43,8 +43,8 @@ hi Normal               guibg=#282828 guifg=#D8D8D8
 hi Question             guifg=#ff6347
 hi Search               guifg=#000000 guibg=#ffd700
 hi SpecialKey           guifg=#00ffff
-hi StatusLine           guifg=#f0e68c guibg=#000000
-hi StatusLineNC         guibg=#f0e68c guifg=#666666
+hi StatusLine           guifg=#666666 guibg=#d8d8d8
+hi StatusLineNC         guifg=#b8b8b8 guibg=#444444
 hi Title                guifg=#ff6347
 hi Visual               guibg=#666666
 hi VisualNOS            guifg=#000000 guibg=fg
@@ -63,7 +63,7 @@ hi Constant             guifg=#6C99BB gui=NONE
     hi Float            guifg=#6C99BB
 
 hi Identifier           guifg=#afeeee
-    hi Function         guifg=#FFF980 gui=NONE
+    hi Function         guifg=#FFF980
 
 hi Statement            guifg=#FFC66D
     hi Conditional      guifg=#CC7833
@@ -169,6 +169,11 @@ hi link javaScriptBraces Normal
 hi link javaScript Normal
 hi link javaScriptStatement Keyword
 hi link javaScriptFunction Keyword
+
+hi coffeeAssignSymbols gui=NONE
+hi coffeeVar guifg=#B7DFF8
+hi coffeeAssign guifg=#D8D8D8
+hi coffeeFunction guifg=#CC7833
 
 " NERDTree coloring
 hi treeDir guifg=#FFC66D
