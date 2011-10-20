@@ -62,7 +62,7 @@ hi Constant             guifg=#6C99BB gui=NONE
     hi Boolean          guifg=#6C99BB
     hi Float            guifg=#6C99BB
 
-hi Identifier           guifg=#afeeee
+hi Identifier           guifg=#B7DFF8
     hi Function         guifg=#FFF980
 
 hi Statement            guifg=#FFC66D
@@ -85,7 +85,7 @@ hi Type                 guifg=#FFF980 gui=NONE
 
 hi Special              guifg=#ff6347
     " Underline Character
-    hi SpecialChar      gui=underline guifg=#7fffd4
+    hi SpecialChar      guifg=#7fffd4
     hi Tag              guifg=#ff6347
     "Statement
     hi Delimiter        guifg=#D8D8D8
@@ -160,6 +160,7 @@ hi cssComment         guifg=#EEEEEE guibg=#575757
     hi link cssUIAttr Constant
     hi link cssRenderAttr Constant
     hi link cssTableAttr Constant
+hi sassClass guifg=#B7DFF8
 
 " Javascript syntax
 hi javaScriptIdentifier guifg=#6C99BB
@@ -170,10 +171,12 @@ hi link javaScript Normal
 hi link javaScriptStatement Keyword
 hi link javaScriptFunction Keyword
 
-hi coffeeAssignSymbols gui=NONE
-hi coffeeVar guifg=#B7DFF8
-hi coffeeAssign guifg=#D8D8D8
-hi coffeeFunction guifg=#CC7833
+hi coffeeObjAssign guifg=#FFF980
+" Keep parens and special ops normal
+hi link coffeeParen Normal
+hi link coffeeSpecialOp Normal
+" @vars
+hi coffeeSpecialVar guifg=#B7DFF8 
 
 " NERDTree coloring
 hi treeDir guifg=#FFC66D
