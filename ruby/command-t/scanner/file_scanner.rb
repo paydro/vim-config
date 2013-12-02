@@ -1,4 +1,4 @@
-# Copyright 2010-2011 Wincent Colaiuta. All rights reserved.
+# Copyright 2010-2013 Wincent Colaiuta. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -28,45 +28,68 @@ module CommandT
   # Reads the current directory recursively for the paths to all regular files.
   class FileScanner < Scanner
     class FileLimitExceeded < ::RuntimeError; end
+    attr_accessor :path
 
     def initialize path = Dir.pwd, options = {}
+      @paths                = {}
+      @paths_keys           = []
       @path                 = path
       @max_depth            = options[:max_depth] || 15
-      @max_files            = options[:max_files] || 10_000
+      @max_files            = options[:max_files] || 30_000
+      @max_caches           = options[:max_caches] || 1
       @scan_dot_directories = options[:scan_dot_directories] || false
+      @wild_ignore          = options[:wild_ignore]
+      @base_wild_ignore     = VIM::wild_ignore
     end
 
     def paths
-      return @paths unless @paths.nil?
+      return @paths[@path] if @paths.has_key?(@path)
       begin
-        @paths = []
-        @depth = 0
-        @files = 0
-        @prefix_len = @path.chomp('/').length
-        add_paths_for_directory @path, @paths
+        ensure_cache_under_limit
+        @paths[@path] = []
+        @depth        = 0
+        @files        = 0
+        @prefix_len   = @path.chomp('/').length
+        set_wild_ignore(@wild_ignore)
+        add_paths_for_directory @path, @paths[@path]
       rescue FileLimitExceeded
+      ensure
+        set_wild_ignore(@base_wild_ignore)
       end
-      @paths
+      @paths[@path]
     end
 
     def flush
-      @paths = nil
-    end
-
-    def path= str
-      if @path != str
-        @path = str
-        flush
-      end
+      @paths = {}
     end
 
   private
+
+    def ensure_cache_under_limit
+      # Ruby 1.8 doesn't have an ordered hash, so use a separate stack to
+      # track and expire the oldest entry in the cache
+      if @max_caches > 0 && @paths_keys.length >= @max_caches
+        @paths.delete @paths_keys.shift
+      end
+      @paths_keys << @path
+    end
 
     def path_excluded? path
       # first strip common prefix (@path) from path to match VIM's behavior
       path = path[(@prefix_len + 1)..-1]
       path = VIM::escape_for_single_quotes path
       ::VIM::evaluate("empty(expand(fnameescape('#{path}')))").to_i == 1
+    end
+
+    def looped_symlink? path
+      if File.symlink?(path)
+        target = File.expand_path(File.readlink(path), File.dirname(path))
+        target.include?(@path) || @path.include?(target)
+      end
+    end
+
+    def set_wild_ignore(ignore)
+      ::VIM::command("set wildignore=#{ignore}") if @wild_ignore
     end
 
     def add_paths_for_directory dir, accumulator
@@ -81,6 +104,7 @@ module CommandT
           elsif File.directory?(path)
             next if @depth >= @max_depth
             next if (entry.match(/\A\./) && !@scan_dot_directories)
+            next if looped_symlink?(path)
             @depth += 1
             add_paths_for_directory path, accumulator
             @depth -= 1

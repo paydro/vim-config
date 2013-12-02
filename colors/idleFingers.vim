@@ -6,7 +6,7 @@
 " tries to copy the color style for MacVim usage.
 
 " Init
-set background=dark
+"set background=dark
 hi clear
 if exists("syntax_on")
     syntax reset
@@ -23,33 +23,38 @@ let g:colors_name = "idleFingers"
 
 hi Cursor               guibg=#FFFFFF
 hi CursorIM             guifg=NONE guibg=#ff83fa
+hi CursorLine           term=NONE cterm=NONE guibg=#333333
+hi CursorLineNr         term=bold ctermfg=14 guifg=#999999
 hi Directory            guifg=#FFC66D
-hi DiffAdd              guibg=#528b8b
-hi DiffChange           guibg=#8b636c
-hi DiffDelete           guifg=fg guibg=#000000
-hi DiffText             guibg=#6959cd
+hi DiffAdd              guibg=#165913
+hi DiffChange           guibg=#593F13
+hi DiffDelete           guibg=#591313 guifg=#9C2222
+hi DiffText             guibg=#59B4CD
 hi ErrorMsg             guifg=#D8D8D8 guibg=#ff0000
-hi VertSplit            guifg=#323232 guibg=#f0e68c
 hi Folded               guifg=#999999 guibg=#444444
-hi FoldColumn           guifg=#000000 guibg=#bdb76b
+hi FoldColumn           guifg=#e8e8e8 guibg=#222222
 hi SignColumn           guifg=#bdb76b guibg=#20b2aa
-hi IncSearch            guifg=#000000 guibg=#D8D8D8
-hi LineNr               guifg=#888888
+hi IncSearch            gui=bold guifg=#282828 guibg=#75aac8
+hi LineNr               guifg=#777777 guibg=#282828
 hi MatchParen           guifg=#FFFFFF guibg=#666666 gui=bold
 hi ModeMsg              gui=NONE
 hi MoreMsg              guifg=#20b2aa
 hi NonText              guifg=#D8D8D8
 hi Normal               guibg=#282828 guifg=#D8D8D8
 hi Question             guifg=#ff6347
-hi Search               guifg=#000000 guibg=#ffd700
+hi Search               guifg=#282828 guibg=#75aac8
 hi SpecialKey           guifg=#00ffff
-hi StatusLine           guifg=#666666 guibg=#d8d8d8
-hi StatusLineNC         guifg=#b8b8b8 guibg=#444444
+hi VertSplit            gui=bold guifg=#CCCCCC guibg=#484848
+hi StatusLine           gui=bold guifg=#CCCCCC guibg=#484848
+hi StatusLineNC         gui=none guifg=#CCCCCC guibg=#484848
 hi Title                guifg=#ff6347
-hi Visual               guibg=#666666
+" hi Visual               guibg=#ff4671
+hi Visual               guibg=#ff6565 guifg=#000000
 hi VisualNOS            guifg=#000000 guibg=fg
 hi WarningMsg           guifg=#D8D8D8 guibg=#ff6347
 hi WildMenu             guifg=#000000 guibg=#ffff00
+hi Pmenu                guibg=#444444
+hi PmenuSel             guibg=#777777
 
 
 " Colors for syntax highlighting
@@ -93,17 +98,13 @@ hi Special              guifg=#ff6347
     hi SpecialComment   guifg=#da70d6
     hi Debug            guifg=#ff0000
 
-hi Underlined           gui=underline
+hi Underlined           gui=underline guifg=#6C99BB
 
 hi Ignore               guifg=bg
 
 hi Error                guifg=#D8D8D8 guibg=#ff0000
 
 hi Todo                 guifg=#323232 guibg=#BC9458
-
-" Helps colorize FuzzyFileFinder
-hi Pmenu                guibg=#999999 guifg=#000000
-hi PmenuSel             guibg=#333333 guifg=#CCCCCC
 
 " Ruby syntax
 hi rubyConditionalExpression guifg=#D8D8D8
@@ -176,9 +177,27 @@ hi coffeeObjAssign guifg=#FFF980
 hi link coffeeParen Normal
 hi link coffeeSpecialOp Normal
 " @vars
-hi coffeeSpecialVar guifg=#B7DFF8 
+hi coffeeSpecialVar guifg=#B7DFF8
 
 " NERDTree coloring
 hi treeDir guifg=#FFC66D
 hi treeDirSlash guifg=#FFC66D
 
+" Markdown
+hi markdownCode guifg=#6C99BB
+hi markdownHeadingDelimiter guifg=#FFC66D
+hi markdownH1 guifg=#FFC66D
+hi link markdownH2 markdownH1
+hi link markdownH3 markdownH1
+hi link markdownH4 markdownH1
+hi link markdownH5 markdownH1
+hi link markdownH6 markdownH1
+hi link markdownCode Comment
+hi link markdownCodeBlock Comment
+hi link markdownTitleDelimiter Float
+hi markdownLinkTextDelimiter guifg=#B7DFF8
+hi markdownLinkDelimiter guifg=#B7DFF8
+hi markdownId guifg=#A5C261
+
+" Command-T
+hi CommandTSelection guifg=#000000 guibg=#ffd700
