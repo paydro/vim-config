@@ -5,7 +5,9 @@
 set nocompatible
 set modelines=0
 
+set background=light
 colorscheme idleFingers
+"colorscheme macvim
 
 syntax on
 
@@ -102,6 +104,7 @@ map <F7> <Esc>:set columns=162<CR>
 map <F8> <Esc>:set columns=192<CR>
 map <F9> <Esc>:set columns=274<CR>
 map <Leader>d <Esc>:lcd %:p:h<CR>
+map <Leader>n <Esc>:NERDTree %:p:h<CR>
 map <Leader>j <Esc>%!python -m json.tool<CR>
 
 " For 8tracks
@@ -121,8 +124,6 @@ nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
-" Map vim-markdown-preview
-"map <Leader>p :Mm<CR>
 
 " Map <leader>p to NERDtree
 " (backslash)p
@@ -171,7 +172,10 @@ let g:CommandTMatchWindowAtTop=1
 let g:CommandTMaxHeight=20
 let g:CommandTMatchWindowReverse=0
 
-" Coffeescript syntax highlighting
+" Python settings
+let python_highlight_all = 1
+
+"# Coffeescript syntax highlighting
 hi link coffeeSemicolonError NONE
 hi link coffeeSpaceError NONE
 
@@ -189,6 +193,7 @@ au BufNewFile,BufRead *.q set filetype=sql
 
 " Tabbing rules
 au BufRead *.rb set ts=2 sw=2 sts=2 expandtab
+au BufRead *.py set ts=4 sw=4 sts=4 expandtab
 au BufRead *.erb set ts=2 sw=2 sts=2 expandtab
 au BufRead *.css set ts=2 sw=2 sts=2 expandtab
 au BufRead *.ru set filetype=ruby

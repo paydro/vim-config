@@ -17,6 +17,13 @@ set ts=2 sw=2 " Default to 2 spaces per tab
 " Line numbers
 set nonumber
 
+" Go related
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
+
 " Show relative line numbers
 "set relativenumber
 set numberwidth=3
