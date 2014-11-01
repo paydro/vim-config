@@ -3,7 +3,8 @@
 """""""""""""""
 
 set nocompatible
-set modelines=0
+set modeline
+set modelines=5
 
 set background=light
 colorscheme idleFingers
@@ -49,8 +50,8 @@ filetype on
 filetype indent plugin on
 
 " Default window size
-set lines=60
-set columns=203
+"set lines=50
+"set columns=280
 "
 " Set font
 "set guifont=Bitstream_Vera_Sans_Mono:h12
@@ -124,7 +125,6 @@ nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
-
 " Map <leader>p to NERDtree
 " (backslash)p
 map <D-P> :NERDTreeToggle<CR>
@@ -195,6 +195,7 @@ au BufNewFile,BufRead *.q set filetype=sql
 au BufRead *.rb set ts=2 sw=2 sts=2 expandtab
 au BufRead *.py set ts=4 sw=4 sts=4 expandtab
 au BufRead *.erb set ts=2 sw=2 sts=2 expandtab
+au BufRead *.html set ts=2 sw=2 sts=2 expandtab
 au BufRead *.css set ts=2 sw=2 sts=2 expandtab
 au BufRead *.ru set filetype=ruby
 au BufRead *.js set ts=2 sw=2 sts=2 expandtab
@@ -213,3 +214,4 @@ au VimResized * exe "normal! \<c-w>="
 
 " Let fugitive.vim show me git status
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
