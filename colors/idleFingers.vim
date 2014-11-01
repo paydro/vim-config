@@ -38,7 +38,7 @@ hi IncSearch            gui=bold guifg=#282828 guibg=#75aac8 ctermfg=0 ctermbg=1
 hi LineNr               guifg=#777777 guibg=#282828 ctermfg=102
 hi MatchParen           guifg=#FFFFFF guibg=#666666 gui=bold ctermfg=15 ctermbg=241
 hi ModeMsg              gui=NONE
-hi MoreMsg              guifg=#20b2aa ctermfg=173
+hi MoreMsg              guifg=#20b2aa ctermfg=172
 hi NonText              guifg=#D8D8D8 ctermfg=188
 hi Normal               guibg=#282828 guifg=#D8D8D8 ctermbg=235 ctermfg=188
 hi Question             guifg=#ff6347 ctermfg=203
@@ -54,14 +54,14 @@ hi VisualNOS            guifg=#000000 guibg=fg ctermfg=0
 hi WarningMsg           guifg=#D8D8D8 guibg=#ff6347 ctermfg=188 ctermbg=203
 hi WildMenu             guifg=#000000 guibg=#ffff00 ctermfg=0 ctermbg=11
 hi Pmenu                guibg=#444444
-hi PmenuSel             guibg=#777777
+hi PmenuSel             guibg=#777777 ctermbg=226
 
 
 " Colors for syntax highlighting
-hi Comment              guifg=#BC9458 ctermfg=137
+hi Comment              guifg=#BC9458 ctermfg=243
 
 hi Constant             guifg=#6C99BB gui=NONE ctermfg=67
-    hi String           guifg=#A5C261 ctermfg=143
+    hi String           guifg=#A5C261 ctermfg=107
     hi Character        guifg=#6C99BB ctermfg=67
     hi Number           guifg=#6C99BB ctermfg=67
     hi Boolean          guifg=#6C99BB ctermfg=67
@@ -71,20 +71,20 @@ hi Identifier           guifg=#B7DFF8 ctermfg=153
     hi Function         guifg=#FFF980 ctermfg=228
 
 hi Statement            guifg=#FFC66D ctermfg=221
-    hi Conditional      guifg=#CC7833 ctermfg=173
-    hi Repeat           guifg=#CC7833 ctermfg=173
-    hi Label            guifg=#CC7833 ctermfg=173
-    hi Operator         guifg=#CC7833 ctermfg=173
-    hi Keyword          guifg=#CC7833 ctermfg=173
-    hi Exception        guifg=#CC7833 ctermfg=173
+    hi Conditional      guifg=#CC7833 ctermfg=172
+    hi Repeat           guifg=#CC7833 ctermfg=172
+    hi Label            guifg=#CC7833 ctermfg=172
+    hi Operator         guifg=#CC7833 ctermfg=172
+    hi Keyword          guifg=#CC7833 ctermfg=166
+    hi Exception        guifg=#CC7833 ctermfg=172
 
-hi PreProc              guifg=#CC7833 ctermfg=173
-    hi Include          guifg=#CC7833 ctermfg=173
-    hi Define           guifg=#CC7833 gui=NONE ctermfg=173
-    hi Macro            guifg=#CC7833 ctermfg=173
-    hi PreCondit        guifg=#CC7833 ctermfg=173
+hi PreProc              guifg=#CC7833 ctermfg=172
+    hi Include          guifg=#CC7833 ctermfg=172
+    hi Define           guifg=#CC7833 gui=NONE ctermfg=172
+    hi Macro            guifg=#CC7833 ctermfg=172
+    hi PreCondit        guifg=#CC7833 ctermfg=172
 
-hi Type                 guifg=#FFF980 gui=NONE ctermfg=221
+hi Type                 guifg=#FFF980 gui=NONE ctermfg=228
     hi StorageClass     guifg=#FFF980 ctermfg=228
     hi Structure        guifg=#FFF980 ctermfg=228
 
@@ -110,9 +110,9 @@ hi Todo                 guifg=#323232 guibg=#BC9458 ctermfg=236 ctermbg=137
 hi rubyConditionalExpression guifg=#D8D8D8 ctermfg=188
 hi rubyMethod           guifg=#FFC66D ctermfg=221
 hi rubyInstanceVariable guifg=#B7DFF8 ctermfg=153
-hi rubyRailsMethod      guifg=#B83426 ctermfg=130
+hi rubyRailsMethod      guifg=#B83426 ctermfg=124
 hi rubyStringDelimiter  guifg=#A5C261 ctermfg=143
-hi rubyControl          guifg=#CC7833 ctermfg=173
+hi rubyControl          guifg=#CC7833 ctermfg=172
 hi rubyIdentifier       guifg=#B7DFF8 ctermfg=153
 hi link rubyAccess Keyword
 hi link rubyAttribute Keyword
@@ -143,7 +143,7 @@ hi cssTagName         guifg=#FFC66D ctermfg=221
 hi cssBraces          guifg=#D8D8D8 ctermfg=188
 hi cssSelectorOp      guifg=#A5C261 ctermfg=143
 hi cssSelectorOp2     guifg=#A5C261 ctermfg=143
-hi cssInclude         guifg=#CC7833 ctermfg=173
+hi cssInclude         guifg=#CC7833 ctermfg=172
 hi cssFunctionName    guifg=#B83426 ctermfg=130
 hi cssClassName       guifg=#D8D8D8 ctermfg=188
 hi cssIdentifier      guifg=#D8D8D8 ctermfg=188
