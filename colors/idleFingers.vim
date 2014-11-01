@@ -54,7 +54,7 @@ hi VisualNOS            guifg=#000000 guibg=fg ctermfg=0
 hi WarningMsg           guifg=#D8D8D8 guibg=#ff6347 ctermfg=188 ctermbg=203
 hi WildMenu             guifg=#000000 guibg=#ffff00 ctermfg=0 ctermbg=11
 hi Pmenu                guibg=#444444
-hi PmenuSel             guibg=#777777 ctermbg=226
+hi PmenuSel             guibg=#777777 ctermbg=226 ctermfg=0
 
 
 " Colors for syntax highlighting
