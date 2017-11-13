@@ -24,10 +24,11 @@ set autoindent
 set ts=2 sw=2 " Default to 2 spaces per tab
 
 " Line numbers
-set nonumber
-" set number
+"set nonumber
+set number
 
 " Show relative line numbers
+" If used with number, will show relative and current line no.
 set relativenumber
 set numberwidth=3
 
@@ -44,7 +45,14 @@ set noballooneval
 "set go-=T
 
 " Hide scroll bars
-set guioptions=Acge
+set guioptions=Ace
+
+" Helper function to return basename of cwd.
+function! GetParentDir()
+    return fnamemodify(getcwd(), ':t')
+endfunction
+
+set guitablabel=%M%{GetParentDir()}
 
 filetype on
 filetype indent plugin on
@@ -79,7 +87,7 @@ set smartcase
 
 set autowrite
 
-set undolevels=1000
+set undolevels=8000
 
 set splitbelow
 set splitright
@@ -99,17 +107,21 @@ endif
 """"""""""""
 " Mappings "
 """"""""""""
-map <F5> <Esc>:set columns=80<CR>
-map <F6> <Esc>:set columns=114<CR>
-map <F7> <Esc>:set columns=162<CR>
-map <F8> <Esc>:set columns=192<CR>
-map <F9> <Esc>:set columns=274<CR>
 map <Leader>d <Esc>:lcd %:p:h<CR>
 map <Leader>n <Esc>:NERDTree %:p:h<CR>
 map <Leader>j <Esc>%!python -m json.tool<CR>
 
 " For 8tracks
 map <F11> <Esc>:au BufRead *.js set ts=2 sw=2 sts=2 expandtab<CR>
+
+" Save plangrid coding session
+fu! PGSaveSession()
+	let l:session_path="~/code/plangrid/pg.vim"
+	exe "mksession! " . l:session_path
+	echom "Session saved to " . l:session_path
+endf
+
+map <F5> :call PGSaveSession()<CR>
 
 fu! AddERB()
   execute "normal \<Esc>a<% %>\<Esc>hh"
@@ -132,11 +144,15 @@ map <D-P> :NERDTreeToggle<CR>
 " Use TextMate's commenting shortcut
 map <D-/> <plug>NERDCommenterToggle
 
+" LCD to 8tracks code
+map <Leader>c <Esc>:lcd ~/code/8tracks<CR>
+
 " Helps NERDCommenter determine comment characters
 filetype plugin on
 
 " NERD_commenters
 let NERDSpaceDelims=1
+let g:NERDCustomDelimiters = { 'sls': { 'left': '#' } }
 
 " NERDTree
 " Change cwd as you change directories
@@ -160,6 +176,8 @@ if has("gui_macvim")
   map <D-r> :CommandTFlush<CR>
 endif
 
+map <Leader>s :e ~/Desktop/ruby_scratch.rb<CR>
+
 let NERDTreeSortOrder=[]
 let NERDTreeShowBookmarks=1
 
@@ -175,43 +193,17 @@ let g:CommandTMatchWindowReverse=0
 " Python settings
 let python_highlight_all = 1
 
+" Reactjs
+let g:jsx_ext_required = 0
+
 "# Coffeescript syntax highlighting
 hi link coffeeSemicolonError NONE
 hi link coffeeSpaceError NONE
 
-" Remove all trailing whitespaces when saving a file
-autocmd BufWritePre * :%s/\s\+$//e
-
-" Lesscss files (*.less)
-au BufNewFile,BufRead *.less set filetype=less
-au BufNewFile,BufRead *.as set filetype=actionscript
-au BufNewFile,BufRead *.ejs set filetype=eruby
-au BufNewFile,BufRead *.vcl set filetype=conf
-au BufNewFile,BufRead *.vcl.erb set filetype=conf
-au BufNewFile,BufRead *.q set filetype=sql
-"au BufNewFile,BufRead *.jst set filetype=html ts=2 sw=2 sts=2 expandtab
-
-" Tabbing rules
-au BufRead *.rb set ts=2 sw=2 sts=2 expandtab
-au BufRead *.py set ts=4 sw=4 sts=4 expandtab
-au BufRead *.erb set ts=2 sw=2 sts=2 expandtab
-au BufRead *.html set ts=2 sw=2 sts=2 expandtab
-au BufRead *.css set ts=2 sw=2 sts=2 expandtab
-au BufRead *.ru set filetype=ruby
-au BufRead *.js set ts=2 sw=2 sts=2 expandtab
-au BufRead *.json set ts=2 sw=2 sts=2 expandtab
-au BufRead *.jst set ts=2 sw=2 sts=2 expandtab
-au BufRead *.tpl set ts=2 sw=2 sts=2 expandtab
-au BufRead *.coffee set ts=2 sw=2 sts=2 expandtab
-au BufRead *.c set ts=4 sw=4 sts=4 expandtab
-au BufRead *.php set ts=4 sw=4 sts=4 expandtab
-"au BufRead *.as set ts=4 sw=4 sts=4 noexpandtab
-au BufRead *.go set ts=4 sw=4 sts=4 noexpandtab
-au BufRead,BufNewFile *.go set filetype=go
-
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
-" Let fugitive.vim show me git status
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+" Save session on quitting Vim
+"autocmd VimLeave * NERDTreeClose
+"autocmd VimLeave * mksession! ~/.vim/sessions/latest.vim
 

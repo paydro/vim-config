@@ -33,7 +33,7 @@ hi DiffText             guibg=#59B4CD ctermbg=95
 hi ErrorMsg             guifg=#D8D8D8 guibg=#ff0000 ctermfg=188 ctermbg=9
 hi Folded               guifg=#999999 guibg=#444444 ctermfg=246 ctermbg=238
 hi FoldColumn           guifg=#e8e8e8 guibg=#222222 ctermfg=253 ctermbg=242
-hi SignColumn           guifg=#bdb76b guibg=#20b2aa ctermfg=143 ctermbg=37
+hi SignColumn           guifg=#777777 guibg=#333333 ctermfg=143 ctermbg=37
 hi IncSearch            gui=bold guifg=#282828 guibg=#75aac8 ctermfg=0 ctermbg=188
 hi LineNr               guifg=#777777 guibg=#282828 ctermfg=102
 hi MatchParen           guifg=#FFFFFF guibg=#666666 gui=bold ctermfg=15 ctermbg=241
@@ -55,10 +55,11 @@ hi WarningMsg           guifg=#D8D8D8 guibg=#ff6347 ctermfg=188 ctermbg=203
 hi WildMenu             guifg=#000000 guibg=#ffff00 ctermfg=0 ctermbg=11
 hi Pmenu                guibg=#444444
 hi PmenuSel             guibg=#777777 ctermbg=226 ctermfg=0
+hi QuickFixLine         guifg=#000000 guibg=#ffff00
 
 
 " Colors for syntax highlighting
-hi Comment              guifg=#BC9458 ctermfg=243
+hi Comment              guifg=#BC9458 ctermfg=246
 
 hi Constant             guifg=#6C99BB gui=NONE ctermfg=67
     hi String           guifg=#A5C261 ctermfg=107
@@ -201,3 +202,14 @@ hi markdownId guifg=#A5C261 ctermfg=143
 
 " Command-T
 hi CommandTSelection guifg=#000000 guibg=#ffd700
+
+" Python
+syn keyword pythonInstanceVariable self
+hi link pythonInstanceVariable Identifier
+hi link pythonDecorator Identifier
+hi link pythonDottedName Identifier
+hi link pythonStatement Keyword
+hi link pythonBuiltinObj Keyword
+
+" Syntastic
+hi SyntasticErrorSign guifg=#ff6347 guibg=#333333
