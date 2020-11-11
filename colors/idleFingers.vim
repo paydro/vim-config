@@ -57,6 +57,8 @@ hi Pmenu                guibg=#444444
 hi PmenuSel             guibg=#777777 ctermbg=226 ctermfg=0
 hi QuickFixLine         guifg=#000000 guibg=#ffff00
 
+hi SpellCap             term=reverse ctermbg=9 gui=undercurl guisp=#FFF980
+
 
 " Colors for syntax highlighting
 hi Comment              guifg=#BC9458 ctermfg=246
@@ -209,7 +211,10 @@ hi link pythonInstanceVariable Identifier
 hi link pythonDecorator Identifier
 hi link pythonDottedName Identifier
 hi link pythonStatement Keyword
-hi link pythonBuiltinObj Keyword
+
+" python-mode overrides
+hi link pythonDocstring Comment
+hi link pythonBuiltinObj Constant
 
 " Syntastic
 hi SyntasticErrorSign guifg=#ff6347 guibg=#333333
