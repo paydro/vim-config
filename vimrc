@@ -92,9 +92,10 @@ set rtp+=/opt/homebrew/opt/fzf
 map <Leader>t <Esc>:FZF --reverse<CR>
 
 " lcd to current file directory
-map <Leader>d <Esc>:lcd %:p:h<CR>
+" map <Leader>d <Esc>:lcd %:p:h<CR>
+
+" Opens NERDTree at the file's current directory
 map <Leader>n <Esc>:NERDTree %:p:h<CR>
-map <Leader>j <Esc>%!python -m json.tool<CR>
 
 " Map <leader>p to NERDtree and auto resize-splits
 " (backslash)p
@@ -154,6 +155,7 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> gd <plug>(lsp-definition)
+	nmap <buffer> <leader>d <plug>(lsp-peek-definition)
     " nmap <buffer> gs <plug>(lsp-document-symbol-search)
     " nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
     " nmap <buffer> gr <plug>(lsp-references)

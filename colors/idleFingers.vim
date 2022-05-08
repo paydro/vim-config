@@ -56,7 +56,7 @@ hi Visual               guibg=#ff6565 guifg=#FFFFFF ctermbg=161 ctermfg=015
 hi VisualNOS            guifg=#000000 guibg=fg ctermfg=0
 hi WarningMsg           guifg=#D8D8D8 guibg=#ff6347 ctermfg=188 ctermbg=203
 hi WildMenu             guifg=#000000 guibg=#ffff00 ctermfg=0 ctermbg=11
-hi Pmenu                guibg=#444444 ctermfg=250 ctermbg=238
+hi Pmenu                guibg=#333333 ctermfg=250 ctermbg=238
 hi PmenuSel             guibg=#777777 ctermfg=233 ctermbg=248
 hi PmenuSbar            guibg=#AAAAAA ctermfg=243 ctermbg=240
 hi PmenuThumb           guibg=#222222 ctermbg=248
@@ -224,6 +224,9 @@ hi link pythonBuiltinObj Constant
 
 " Syntastic
 hi SyntasticErrorSign guifg=#ff6347 guibg=#333333
+
+" vim-lsp
+hi lspReference guibg=#111111
 
 " HCL
 hi def link hclBlockType Statement
