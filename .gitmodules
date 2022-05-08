@@ -1,3 +1,51 @@
 [submodule "pack/base/start/ack.vim"]
 	path = pack/base/start/ack.vim
 	url = git@github.com:mileszs/ack.vim.git
+[submodule "pack/base/start/nerdcommenter"]
+	path = pack/base/start/nerdcommenter
+	url = git@github.com:preservim/nerdcommenter.git
+[submodule "pack/base/start/nerdtree"]
+	path = pack/base/start/nerdtree
+	url = git@github.com:preservim/nerdtree.git
+[submodule "pack/base/start/tabline.vim"]
+	path = pack/base/start/tabline.vim
+	url = git@github.com:mkitt/tabline.vim.git
+[submodule "pack/base/start/ultisnips"]
+	path = pack/base/start/ultisnips
+	url = git@github.com:SirVer/ultisnips.git
+[submodule "pack/base/start/vim-fugitive"]
+	path = pack/base/start/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive.git
+[submodule "pack/base/start/vim-repeat"]
+	path = pack/base/start/vim-repeat
+	url = git@github.com:tpope/vim-repeat.git
+[submodule "pack/base/start/vim-snippets"]
+	path = pack/base/start/vim-snippets
+	url = git@github.com:honza/vim-snippets.git
+[submodule "pack/base/start/vim-surround"]
+	path = pack/base/start/vim-surround
+	url = git@github.com:tpope/vim-surround.git
+[submodule "pack/base/start/vim-textobj-user"]
+	path = pack/base/start/vim-textobj-user
+	url = git@github.com:kana/vim-textobj-user.git
+[submodule "pack/base/start/ale"]
+	path = pack/base/start/ale
+	url = git@github.com:dense-analysis/ale.git
+[submodule "pack/base/start/asyncomplete-lsp.vim"]
+	path = pack/base/start/asyncomplete-lsp.vim
+	url = git@github.com:prabirshrestha/asyncomplete-lsp.vim.git
+[submodule "pack/base/start/asyncomplete.vim"]
+	path = pack/base/start/asyncomplete.vim
+	url = git@github.com:prabirshrestha/asyncomplete.vim.git
+[submodule "pack/base/start/vim-lsp"]
+	path = pack/base/start/vim-lsp
+	url = git@github.com:prabirshrestha/vim-lsp.git
+[submodule "pack/base/start/vim-lsp-settings"]
+	path = pack/base/start/vim-lsp-settings
+	url = git@github.com:mattn/vim-lsp-settings.git
+[submodule "pack/base/start/vim-lsp-snippets"]
+	path = pack/base/start/vim-lsp-snippets
+	url = git@github.com:thomasfaingnaert/vim-lsp-snippets.git
+[submodule "pack/base/start/vim-lsp-ultisnips"]
+	path = pack/base/start/vim-lsp-ultisnips
+	url = git@github.com:thomasfaingnaert/vim-lsp-ultisnips.git
