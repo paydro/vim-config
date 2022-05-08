@@ -88,3 +88,6 @@
 [submodule "pack/syntax/start/vim-rails"]
 	path = pack/syntax/start/vim-rails
 	url = git@github.com:tpope/vim-rails.git
+[submodule "pack/syntax/start/vim-ruby"]
+	path = pack/syntax/start/vim-ruby
+	url = git@github.com:vim-ruby/vim-ruby.git

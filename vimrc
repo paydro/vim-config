@@ -250,6 +250,9 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:closetag_filenames = '*.html.erb,*.html,*.xhtml,*.html,*.tmpl'
 let g:closetag_filetypes = 'html,xhtml,gohtmltmpl'
 
+" vim-ruby settings
+let ruby_operators = 1
+let ruby_pseudo_operators = 1
 
 augroup vimrc
   au!
