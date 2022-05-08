@@ -85,3 +85,6 @@
 [submodule "pack/syntax/start/vim-textobj-rubyblock"]
 	path = pack/syntax/start/vim-textobj-rubyblock
 	url = git@github.com:nelstrom/vim-textobj-rubyblock.git
+[submodule "pack/syntax/start/vim-rails"]
+	path = pack/syntax/start/vim-rails
+	url = git@github.com:tpope/vim-rails.git
