@@ -258,9 +258,6 @@ augroup vimrc
   " Remove all trailing whitespaces when saving a file
   autocmd BufWritePre * :%s/\s\+$//e
 
-  " vim-prettier
-  "autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
-
   " tw=88 to better gq comments
   au BufNewFile,BufRead */plangrid/plangrid-forge/*.py set textwidth=88
 
