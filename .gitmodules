@@ -49,3 +49,39 @@
 [submodule "pack/base/start/vim-lsp-ultisnips"]
 	path = pack/base/start/vim-lsp-ultisnips
 	url = git@github.com:thomasfaingnaert/vim-lsp-ultisnips.git
+[submodule "pack/syntax/start/html5.vim"]
+	path = pack/syntax/start/html5.vim
+	url = git@github.com:sheerun/html5.vim.git
+[submodule "pack/syntax/start/typescript-vim"]
+	path = pack/syntax/start/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "pack/syntax/start/vim-closetag"]
+	path = pack/syntax/start/vim-closetag
+	url = git@github.com:alvan/vim-closetag.git
+[submodule "pack/syntax/start/vim-css3-syntax"]
+	path = pack/syntax/start/vim-css3-syntax
+	url = git@github.com:hail2u/vim-css3-syntax.git
+[submodule "pack/syntax/start/vim-css-color"]
+	path = pack/syntax/start/vim-css-color
+	url = git@github.com:ap/vim-css-color.git
+[submodule "pack/syntax/start/vim-fugitive"]
+	path = pack/syntax/start/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive.git
+[submodule "pack/syntax/start/vim-go"]
+	path = pack/syntax/start/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "pack/syntax/start/vim-javascript"]
+	path = pack/syntax/start/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
+[submodule "pack/syntax/start/vim-jsx-pretty"]
+	path = pack/syntax/start/vim-jsx-pretty
+	url = git@github.com:MaxMEllon/vim-jsx-pretty.git
+[submodule "pack/syntax/start/vim-markdown"]
+	path = pack/syntax/start/vim-markdown
+	url = git@github.com:plasticboy/vim-markdown.git
+[submodule "pack/syntax/start/vim-prettier"]
+	path = pack/syntax/start/vim-prettier
+	url = git@github.com:prettier/vim-prettier.git
+[submodule "pack/syntax/start/vim-textobj-rubyblock"]
+	path = pack/syntax/start/vim-textobj-rubyblock
+	url = git@github.com:nelstrom/vim-textobj-rubyblock.git

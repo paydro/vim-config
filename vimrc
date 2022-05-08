@@ -1,6 +1,4 @@
-if $COLORTERM == "truecolor"
-  set termguicolors
-end
+set termguicolors
 
 set nocompatible
 set modeline
