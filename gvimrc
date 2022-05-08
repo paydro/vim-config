@@ -28,15 +28,14 @@ endfunction
 set guitablabel=%M%{GetParentDir()}
 
 " Default window size
-"set lines=50
-"set columns=280
+set lines=100
+set columns=200
 "
 " Set font
-"set guifont=Bitstream_Vera_Sans_Mono:h12
-"set guifont=Inconsolata-dz:h12
-set guifont=Menlo:h12
-"set guifont=Ubuntu_Mono:h13
-set linespace=0
+" set guifont=Monospace\ 9
+" set linespace=1
+set guifont=Source\ Code\ Pro\ Medium\ 10
+set linespace=-2
 
 " Disable to beep on errors
 set vb t_vb=
@@ -54,98 +53,50 @@ map <Leader>d <Esc>:lcd %:p:h<CR>
 map <Leader>n <Esc>:NERDTree %:p:h<CR>
 map <Leader>j <Esc>%!python -m json.tool<CR>
 
+" Copy/paste with easier shortcut keys
+" Paste with CTRL+SHIFT+v
+noremap <C-S-v> "+gP
+inoremap <C-S-v> <Esc>"+pa
+" Copy with CTRL+SHIFT+c
+map <C-S-c> "+y
+
+" CTRL-S to Save
+noremap <C-s> :w<CR>
+
+
 " Save plangrid coding session
-fu! PGSaveSession()
-	let l:session_path="~/code/plangrid/pg.vim"
+fu! SaveSession()
+	let l:session_path="~/code/session.vim"
 	exe "mksession! " . l:session_path
 	echom "Session saved to " . l:session_path
 endf
 
-map <F5> :call PGSaveSession()<CR>
+map <F5> :call SaveSession()<CR>
 
-fu! AddERB()
-  execute "normal \<Esc>a<% %>\<Esc>hh"
-  execute "startinsert"
-endf
+" fu! AddERB()
+  " execute "normal \<Esc>a<% %>\<Esc>hh"
+  " execute "startinsert"
+" endf
 
-imap <D-lt> <Esc>:call AddERB()<CR>
-imap <D->> <C-x><Space>
+" imap <D-lt> <Esc>:call AddERB()<CR>
+" imap <D->> <C-x><Space>
 
 " Map TextMate indent keys with vim
-nmap <D-[> <<
-nmap <D-]> >>
-vmap <D-[> <gv
-vmap <D-]> >gv
+" nmap <D-[> <<
+" nmap <D-]> >>
+" vmap <D-[> <gv
+" vmap <D-]> >gv
 
 " Map <leader>p to NERDtree
 " (backslash)p
-map <D-P> :NERDTreeToggle<CR>
+" map <D-P> :NERDTreeToggle<CR>
 
 " Use TextMate's commenting shortcut
-map <D-/> <plug>NERDCommenterToggle
+" map <D-/> <plug>NERDCommenterToggle
 
-" LCD to 8tracks code
-map <Leader>c <Esc>:lcd ~/code/8tracks<CR>
-
-"" NERD_commenters
-"let NERDSpaceDelims=1
-"let g:NERDCustomDelimiters = { 'sls': { 'left': '#' } }
-
-" NERDTree
-" Change cwd as you change directories
-" See :help nerdtree
-"let NERDTreeChDirMode=2
-
-" List all files/directories in alphabetical order.
-" Allows directories and files with the same name to appear next to
-" each other.
-"let NERDTreeSortOrder=[]
-
-"" html indenting
-"let g:html_indent_inctags = "video,source"
-"
-"" Disable rails.vim abbreviations
-"let g:rails_no_abbreviations=0
-
-" Command-T Options
-" Update: 2019-03-03 Using FZF now.
-" if has("gui_macvim")
-"   map <Leader>t :CommandT<CR>
-"   map <D-r> :CommandTFlush<CR>
-" endif
-
-"map <Leader>s :e ~/Desktop/ruby_scratch.rb<CR>
-
-"let NERDTreeSortOrder=[]
-"let NERDTreeShowBookmarks=1
-
-"let g:CommandTMaxFiles=40000
-"" This breaks window sizing with nerdtree toggled. Therefore, we need to
-"" comment out a line in ruby/command-t/match_window.rb. Look for the
-"" #restore_windown_dimensions and remove the line that sets
-"" window.width = width.
-"let g:CommandTMatchWindowAtTop=1
-"let g:CommandTMaxHeight=20
-"let g:CommandTMatchWindowReverse=0
-
-" Python settings
-"let python_highlight_all = 1
-
-let g:black_virtualenv = "~/.virtualenv/black"
-
-" Reactjs
-let g:jsx_ext_required = 0
 
 augroup gvimrc
   au!
   " Resize splits when the window is resized
   au VimResized * exe "normal! \<c-w>="
 augroup END
-
-" Save session on quitting Vim
-"autocmd VimLeave * NERDTreeClose
-"autocmd VimLeave * mksession! ~/.vim/sessions/latest.vim
-
-" This expects the python installation to be installed via pyenv!
-set pythonthreehome=/Users/pbui/.pyenv/versions/3.6.8/lib/python3.6
-set pythonthreedll=/Users/pbui/.pyenv/versions/3.6.8/lib/python3.6/lib-dynload

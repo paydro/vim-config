@@ -1,11 +1,14 @@
-"set rubydll=/usr/local/Cellar/ruby/2.5.1/lib/libruby.dylib
-call pathogen#infect()
+" Just force this - no need to check since Fedora has 24bit color
+set termguicolors
+
+let g:polyglot_is_disabled = {'go': 1}
 
 set nocompatible
 set modeline
 set modelines=5
 
-colorscheme idlefingers
+syntax on
+colorscheme idleFingers
 
 set noswapfile
 set autowrite
@@ -18,16 +21,16 @@ set smartindent
 set autoindent
 set ts=2 sw=2 " Default to 2 spaces per tab
 
+" Enable mouse
+if has("mouse_sgr")
+  set ttymouse=sgr
+else
+  set ttymouse=xterm2
+end
+set mouse=a
+
 " Line numbers
 set number
-
-" Go related
-filetype off
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
-filetype plugin indent on
-syntax on
-
 " Show relative line numbers
 set relativenumber
 set numberwidth=3
@@ -69,42 +72,68 @@ set wildignore+=node_modules/**,*.pyc
 " Don't save options. Pathogen manipulates this
 set sessionoptions-=options
 set sessionoptions-=buffers
+set sessionoptions-=blank
+
+fu! SaveSession()
+	let l:session_path="~/code/session.vim"
+	exe "mksession! " . l:session_path
+	echom "Session saved to " . l:session_path
+endf
+
+map <F5> :call SaveSession()<CR>
+
+
+" Load files that have changed by default
+set autoread
+
+" Enable matchit.vim plugin for vim-textobj-user and vim-textobj-rubyblock
+runtime macros/matchit.vim
 
 " fzf
-set rtp+=/usr/local/opt/fzf
-map <Leader>t <Esc>:FZF<CR>
+" Ubuntu
+"set rtp+=/usr/share/doc/fzf/examples/
+" Fedora - install fzf installs vim files here
+set rtp+=/usr/share/vim/vimfiles/plugin/
+" NOTE: For this to find the correct files, the silver searcher must be
+" installed and the appropriate FZF environment variables should be set. See
+" ~/.profile.
+map <Leader>t <Esc>:FZF --reverse<CR>
 
 " lcd to current file directory
 map <Leader>d <Esc>:lcd %:p:h<CR>
 map <Leader>n <Esc>:NERDTree %:p:h<CR>
 map <Leader>j <Esc>%!python -m json.tool<CR>
 
-" Map <leader>p to NERDtree
+" Map <leader>p to NERDtree and auto resize-splits
 " (backslash)p
-map <Leader>p :NERDTreeToggle<CR>
+map <Leader>p :NERDTreeToggle<CR><C-W>=
 
-" Use TextMate's commenting shortcut
-map <Leader>/ <plug>NERDCommenterToggle
+" Override default NERDCommenter comment command to use Toggle
+" (I override <space> to clear search)
+" See :help NERDCommenterFunctionalitySummary
+map <Leader>cc <plug>NERDCommenterToggle
 
-map <Leader>i :GoImports<CR>
 
-function! Py2()
-  let g:syntastic_python_python_exec = '/usr/local/bin/python2'
-endfunction
+" Copy/paste with easier shortcut keys
+" Paste with CTRL+SHIFT+v
+" noremap <C-S-v> "+gP
+" inoremap <C-S-v> <Esc>"+pa
+" Copy with CTRL+SHIFT+c
+" map <C-S-c> "+y
 
-function! Py3()
-  " let g:syntastic_python_python_exec = '/Users/pbui/.virtualenvs/forge/bin/python3.6'
-  let g:syntastic_python_python_exec = '/usr/local/bin/python3.7'
-endfunction
+" Select all
+noremap <C-a> ggVG
 
-call Py3()   " default to Py3 because I try to use it when possible
+" deoplete - autocomplete plugin
+let g:deoplete#enable_at_startup = 1
 
-" Save plangrid coding session
-fu! PGSaveSession()
-	let l:session_path="~/code/plangrid/pg.vim"
-	exe "mksession! " . l:session_path
-	echom "Session saved to " . l:session_path
-endf
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 let NERDTreeSortOrder=[]
 let NERDTreeShowBookmarks=1
@@ -113,6 +142,7 @@ let NERDTreeIgnore=['\~$', '__pycache__$[[dir]]', '\.pyc$']
 " NERD_commenters
 let NERDSpaceDelims=1
 let g:NERDCustomDelimiters = { 'sls': { 'left': '#' } }
+let NERDDefaultAlign='left'
 
 " html indenting
 let g:html_indent_inctags = "video,source"
@@ -121,34 +151,38 @@ let g:html_indent_inctags = "video,source"
 let g:rails_no_abbreviations=0
 
 " Python settings
-let python_highlight_all = 1
-let g:black_virtualenv = "~/.virtualenv/black"
+" let python_highlight_all = 1
+"let g:black_virtualenv = "~/.virtualenv/black"
 
 " python-mode
-let g:pymode_options = 0 " Don't use default options
-let g:pymode_indent = 1
-let g:pymode_motion = 1
-let g:pymode_doc = 1 " Hit 'K' for documentation
-let g:pymode_breakpoint = 1 " use <leader>b to input breakpoint
-let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
-let g:pymode_lint = 0 " Use syntastic instead
-let g:pymode_lint_on_write = 0 " Do not lint
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
+" let g:pymode_options = 0 " Don't use default options
+" let g:pymode_indent = 1
+" let g:pymode_motion = 1
+" let g:pymode_doc = 1 " Hit 'K' for documentation
+" let g:pymode_breakpoint = 1 " use <leader>b to input breakpoint
+" let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
+" let g:pymode_lint = 0 " Use syntastic instead
+" let g:pymode_lint_on_write = 0 " Do not lint
+" let g:pymode_syntax = 1
+" let g:pymode_syntax_all = 1
 
 " Shell settings
 let g:syntastic_sh_checkers = ['shellcheck']
 
 " Go settings
+map <Leader>i :GoImports<CR>
+
 "let g:go_fmt_fail_silently = 1
-" let g:go_fmt_command = "goimports"
-let g:go_fmt_command = "gofmt"
+let g:go_fmt_command = "goimports"
+"let g:go_fmt_command = "gofmt"
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_functions = 1
+let g:go_highlight_types = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
 let g:go_metalinter_autosave = 0
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
@@ -156,6 +190,12 @@ let g:go_info_mode='gopls'
 " json-vim
 let g:vim_json_syntax_conceal = 0
 
+" ack.vim with the_silver_searcher
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" vim-closetags
+let g:closetag_filenames = '*.html.erb,*.html,*.xhtml,*.html,*.tmpl'
+let g:closetag_filetypes = 'html,xhtml,gohtmltmpl'
 
 
 augroup vimrc
@@ -183,13 +223,13 @@ augroup vimrc
   " Remove all trailing whitespaces when saving a file
   autocmd BufWritePre * :%s/\s\+$//e
 
-  " plangrid-forge repo settings
-  " python black syntax format
-  au BufWritePre */plangrid/plangrid-forge/*.py silent execute ':Black'
+  " vim-prettier
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
 
   " tw=88 to better gq comments
   au BufNewFile,BufRead */plangrid/plangrid-forge/*.py set textwidth=88
 
+  " Filetypes
   au BufNewFile,BufRead *.less set filetype=less
   au BufNewFile,BufRead *.ejs set filetype=eruby
   au BufNewFile,BufRead *.vcl set filetype=conf
@@ -217,19 +257,21 @@ augroup vimrc
   au BufRead *.c set ts=4 sw=4 sts=4 expandtab
   au BufRead *.php set ts=4 sw=4 sts=4 expandtab
 
-  au BufRead *.go set ts=4 sw=4 sts=4 noexpandtab
+  au BufRead *.go set ts=4 sw=4 sts=4 noexpandtab formatoptions+=cr
+  au BufRead *.tmpl set ft=gohtmltmpl ts=2 sw=2 sts=2 expandtab
   au FileType go nmap <leader>r <Plug>(go-test)
-  au FileType go nmap <leader>d <Plug>(go-doc)
+  au FileType go nmap <leader>w <Plug>(go-doc-browser)
   au FileType go nmap <leader>b <Plug>(go-build)
 
   au BufRead *.sls set formatoptions+=croql
   au BufRead,BufNewFile *.go set filetype=go
 
   " Autowrap text in markdown files
-  au BufRead,BufNewFile *.md setlocal textwidth=80
+  au BufRead,BufNewFile *.md setlocal textwidth=80 ts=2 sw=2 sts=2 expandtab
 
   " Bats
   au BufRead,BufNewFile *.bats set ft=sh
+
 augroup END
 
 " syntastic + fugitive
