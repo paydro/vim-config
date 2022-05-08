@@ -118,29 +118,12 @@ hi Error                guifg=#D8D8D8 guibg=#ff0000 ctermfg=255 ctermbg=197
 
 hi Todo                 guifg=#323232 guibg=#BC9458 ctermfg=236 ctermbg=137
 
-" Ruby syntax
-hi rubyConditionalExpression guifg=#D8D8D8 ctermfg=188
-hi rubyMethod           guifg=#FFC66D ctermfg=221
-hi rubyInstanceVariable guifg=#B7DFF8 ctermfg=153
-hi rubyRailsMethod      guifg=#B83426 ctermfg=124
-hi rubyStringDelimiter  guifg=#A5C261 ctermfg=143
-hi rubyControl          guifg=#CC7833 ctermfg=172
-hi rubyIdentifier       guifg=#B7DFF8 ctermfg=153
-hi link rubyAccess Keyword
-hi link rubyAttribute Keyword
-hi link rubyBeginEnd Keyword
-hi link rubyEval Keyword
-hi link rubyException Keyword
-hi clear rubyBracketOperator
-hi link rubyInvalidVariable rubyInstanceVariable
-
-" Rails
-hi railsStringSpecial guifg=#6EA533
-hi railsMethod guifg=#B83426 ctermfg=130
-
-" ERuby syntax
-hi erubyRailsMethod     guifg=#B83426 ctermfg=130
-hi erubyRailsRenderMethod guifg=#B83426 ctermfg=130
+" Ruby syntax (via vim-rails)
+hi rubyMacro			guifg=#B83426 ctermfg=124
+hi link rubySchema rubyMacro
+hi link rubyRoute rubyMacro
+hi link rubyHelper rubyMacro
+hi link rubyResponse rubyMacro
 
 " HTML syntax
 hi htmlTag              guifg=#FFE5BB ctermfg=223
@@ -160,19 +143,21 @@ hi cssFunctionName    guifg=#B83426 ctermfg=130
 hi cssClassName       guifg=#D8D8D8 ctermfg=188
 hi cssIdentifier      guifg=#D8D8D8 ctermfg=188
 hi cssComment         guifg=#EEEEEE guibg=#575757 ctermfg=7 ctermbg=240
-    " Let right hand side be the same color
-    hi link cssFontAttr Constant
-    hi link cssCommonAttr Constant
-    hi link cssFontDescriptorAttr Constant
-    hi link cssColorAttr Constant
-    hi link cssTextAttr Constant
-    hi link cssBoxAttr Constant
-    hi link cssGeneratedContentAttr Constant
-    hi link cssAuralAttr Constant
-    hi link cssPagingAttr Constant
-    hi link cssUIAttr Constant
-    hi link cssRenderAttr Constant
-    hi link cssTableAttr Constant
+
+" Let right hand side be the same color
+hi link cssFontAttr Constant
+hi link cssCommonAttr Constant
+hi link cssFontDescriptorAttr Constant
+hi link cssColorAttr Constant
+hi link cssTextAttr Constant
+hi link cssBoxAttr Constant
+hi link cssGeneratedContentAttr Constant
+hi link cssAuralAttr Constant
+hi link cssPagingAttr Constant
+hi link cssUIAttr Constant
+hi link cssRenderAttr Constant
+hi link cssTableAttr Constant
+
 hi sassClass guifg=#B7DFF8 ctermfg=153
 
 " Javascript syntax
