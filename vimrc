@@ -1,7 +1,6 @@
-" Just force this - no need to check since Fedora has 24bit color
-set termguicolors
-
-let g:polyglot_is_disabled = {'go': 1}
+if $COLORTERM == "truecolor"
+  set termguicolors
+end
 
 set nocompatible
 set modeline
@@ -29,7 +28,8 @@ else
 end
 set mouse=a
 
-" Line numbers
+filetype plugin indent on
+
 set number
 " Show relative line numbers
 set relativenumber
@@ -38,7 +38,6 @@ set numberwidth=3
 " Highlight search
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-
 
 " Stop blinking cursor
 " set guicursor=a:blinkon0
@@ -50,7 +49,6 @@ set ruler
 set incsearch
 set ignorecase
 set smartcase
-set autowrite
 set splitbelow
 set splitright
 set undolevels=8000
@@ -89,11 +87,7 @@ set autoread
 " Enable matchit.vim plugin for vim-textobj-user and vim-textobj-rubyblock
 runtime macros/matchit.vim
 
-" fzf
-" Ubuntu
-"set rtp+=/usr/share/doc/fzf/examples/
-" Fedora - install fzf installs vim files here
-set rtp+=/usr/share/vim/vimfiles/plugin/
+set rtp+=/opt/homebrew/opt/fzf
 " NOTE: For this to find the correct files, the silver searcher must be
 " installed and the appropriate FZF environment variables should be set. See
 " ~/.profile.
@@ -124,8 +118,66 @@ map <Leader>cc <plug>NERDCommenterToggle
 " Select all
 noremap <C-a> ggVG
 
-" deoplete - autocomplete plugin
-let g:deoplete#enable_at_startup = 1
+let g:ale_disable_lsp = 1
+let g:ale_linters =  {
+\ 'terraform': ['tflint'],
+\ 'python': ['flake8'],
+\}
+
+let g:ale_fix_on_save=1
+
+
+let g:ale_fixers = {
+\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\  'javascript': ['prettier'],
+\  'python': ['black'],
+\  'go': ['goimports'],
+\  'terraform': ['terraform'],
+\}
+
+
+" vim-lsp settings
+
+" let g:lsp_diagnostics_highlights_enabled = 0
+" Let ALE handle diagnostics
+let g:lsp_diagnostics_enabled=0
+" vim-lsp javascript support
+if executable('typescript-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'javascript support using typescript-language-server',
+        \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+        \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact']
+        \ })
+endif
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    " nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    " nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    " nmap <buffer> gr <plug>(lsp-references)
+    " nmap <buffer> gi <plug>(lsp-implementation)
+    " nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    " nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    " nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+
+    let g:lsp_format_sync_timeout = 1000
+    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -152,25 +204,26 @@ let g:rails_no_abbreviations=0
 
 " Python settings
 " let python_highlight_all = 1
-"let g:black_virtualenv = "~/.virtualenv/black"
+let g:black_virtualenv = "~/.virtualenv/black"
 
 " python-mode
-" let g:pymode_options = 0 " Don't use default options
-" let g:pymode_indent = 1
-" let g:pymode_motion = 1
+let g:pymode_options = 0 " Don't use default options
+let g:pymode_indent = 1
+let g:pymode_motion = 1
 " let g:pymode_doc = 1 " Hit 'K' for documentation
 " let g:pymode_breakpoint = 1 " use <leader>b to input breakpoint
-" let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
-" let g:pymode_lint = 0 " Use syntastic instead
-" let g:pymode_lint_on_write = 0 " Do not lint
-" let g:pymode_syntax = 1
-" let g:pymode_syntax_all = 1
+let g:pymode_lint = 0 " Use syntastic instead
+let g:pymode_lint_on_write = 0 " Do not lint
+let g:pymode_options_colorcolumn = 0
+let g:pymode_options_max_line_length = 89
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
 
-" Shell settings
-let g:syntastic_sh_checkers = ['shellcheck']
 
 " Go settings
 map <Leader>i :GoImports<CR>
+
+let g:polyglot_is_disabled = {'go': 1}
 
 "let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
@@ -200,22 +253,6 @@ let g:closetag_filetypes = 'html,xhtml,gohtmltmpl'
 
 augroup vimrc
   au!
-
-  " Find the correct .flake8 file to use
-  function! FindConfig(prefix, what, where)
-      let cfg = findfile(a:what, escape(a:where, ' ') . ';')
-      return cfg !=# '' ? ' ' . a:prefix . ' ' . shellescape(cfg) : ''
-  endfunction
-
-  autocmd FileType python let b:syntastic_python_flake8_args =
-      \ get(g:, 'syntastic_python_flake8_args', '') .
-      \ FindConfig('--config', '.flake8', expand('%:p:h', 1))
-  autocmd FileType gitcommit set textwidth=72
-
-  autocmd FileType python let b:syntastic_python_flake8_args =
-     \ get(g:, 'syntastic_python_flake8_args', '') .
-     \ FindConfig('--config', '.flake8', expand('%:p:h', 1))
-
   " vim's smartindent auto-removes indentation with #. This fixes it.
   " See :help smartindent
   autocmd BufRead *.py inoremap # X<c-h>#
@@ -224,7 +261,7 @@ augroup vimrc
   autocmd BufWritePre * :%s/\s\+$//e
 
   " vim-prettier
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+  "autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
 
   " tw=88 to better gq comments
   au BufNewFile,BufRead */plangrid/plangrid-forge/*.py set textwidth=88
@@ -275,5 +312,5 @@ augroup vimrc
 augroup END
 
 " syntastic + fugitive
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %#warningmsg#%{SyntasticStatuslineFlag()}%*\ %P
-
+"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %#warningmsg#%{SyntasticStatuslineFlag()}%*\ %P
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P

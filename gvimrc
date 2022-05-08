@@ -73,27 +73,6 @@ endf
 
 map <F5> :call SaveSession()<CR>
 
-" fu! AddERB()
-  " execute "normal \<Esc>a<% %>\<Esc>hh"
-  " execute "startinsert"
-" endf
-
-" imap <D-lt> <Esc>:call AddERB()<CR>
-" imap <D->> <C-x><Space>
-
-" Map TextMate indent keys with vim
-" nmap <D-[> <<
-" nmap <D-]> >>
-" vmap <D-[> <gv
-" vmap <D-]> >gv
-
-" Map <leader>p to NERDtree
-" (backslash)p
-" map <D-P> :NERDTreeToggle<CR>
-
-" Use TextMate's commenting shortcut
-" map <D-/> <plug>NERDCommenterToggle
-
 
 augroup gvimrc
   au!
