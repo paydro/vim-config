@@ -1,0 +1,15 @@
+
+# error handling
+snippet err "Basic error handling" b
+if err != nil {
+	${1:fmt.Printf("${2} - error: %s\n", err)}
+}
+endsnippet
+
+snippet ff "fmt.Printf(...)"
+fmt.Printf("${1}\n", ${2})
+endsnippet
+
+snippet todo "TODO comment" bw
+// TODO: $0
+endsnippet
