@@ -91,3 +91,9 @@
 [submodule "pack/syntax/start/vim-ruby"]
 	path = pack/syntax/start/vim-ruby
 	url = git@github.com:vim-ruby/vim-ruby.git
+[submodule "pack/syntax/start/vim-terraform"]
+	path = pack/syntax/start/vim-terraform
+	url = git@github.com:hashivim/vim-terraform.git
+[submodule "pack/syntax/start/vim-terragrunt"]
+	path = pack/syntax/start/vim-terragrunt
+	url = git@github.com:yorinasub17/vim-terragrunt.git
