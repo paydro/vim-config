@@ -94,3 +94,6 @@
 [submodule "pack/syntax/start/vim-terragrunt"]
 	path = pack/syntax/start/vim-terragrunt
 	url = git@github.com:yorinasub17/vim-terragrunt.git
+[submodule "pack/base/start/tabline.vim"]
+	path = pack/base/start/tabline.vim
+	url = git@github.com:paydro/tabline.vim.git
