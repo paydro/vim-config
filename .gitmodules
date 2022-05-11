@@ -9,7 +9,7 @@
 	url = git@github.com:preservim/nerdtree.git
 [submodule "pack/base/start/tabline.vim"]
 	path = pack/base/start/tabline.vim
-	url = git@github.com:mkitt/tabline.vim.git
+	url = git@github.com:paydro/tabline.vim.git
 [submodule "pack/base/start/ultisnips"]
 	path = pack/base/start/ultisnips
 	url = git@github.com:SirVer/ultisnips.git
