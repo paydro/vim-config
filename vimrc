@@ -53,8 +53,10 @@ set undolevels=8000
 
 set nofoldenable " disable folding
 
-" Autocomplete
-set completeopt=longest,menuone
+" fugitive
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+" Auto complete
 inoremap <C-Space> <C-x><C-o>
 
 " By default, the /usr/share/vim/vimrc sets this but it doesn't seem to work
@@ -81,9 +83,6 @@ map <F5> :call SaveSession()<CR>
 
 " Load files that have changed by default
 set autoread
-
-" Enable matchit.vim plugin for vim-textobj-user and vim-textobj-rubyblock
-runtime macros/matchit.vim
 
 set rtp+=/opt/homebrew/opt/fzf
 " NOTE: For this to find the correct files, the silver searcher must be
@@ -125,10 +124,12 @@ let g:ale_linters =  {
 
 let g:ale_fix_on_save=1
 
-
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \  'javascript': ['prettier'],
+\  'javascriptreact': ['prettier'],
+\  'typescript': ['prettier'],
+\  'typescriptreact': ['prettier'],
 \  'python': ['black'],
 \  'go': ['goimports'],
 \  'terraform': ['terraform'],
@@ -151,25 +152,25 @@ if executable('typescript-language-server')
 endif
 
 function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-	nmap <buffer> <leader>d <plug>(lsp-peek-definition)
-    " nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    " nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    " nmap <buffer> gr <plug>(lsp-references)
-    " nmap <buffer> gi <plug>(lsp-implementation)
-    " nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    " nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-    " nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> <leader>d <plug>(lsp-peek-definition)
+  " nmap <buffer> gs <plug>(lsp-document-symbol-search)
+  " nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+  " nmap <buffer> gr <plug>(lsp-references)
+  " nmap <buffer> gi <plug>(lsp-implementation)
+  " nmap <buffer> gt <plug>(lsp-type-definition)
+  nmap <buffer> <leader>rn <plug>(lsp-rename)
+  " nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+  " nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+  nmap <buffer> K <plug>(lsp-hover)
 
-    let g:lsp_format_sync_timeout = 1000
-    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+  let g:lsp_format_sync_timeout = 1000
+  " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
 
-    " refer to doc to add more commands
+  " refer to doc to add more commands
 endfunction
 
 augroup lsp_install
@@ -271,7 +272,6 @@ augroup vimrc
   au BufNewFile,BufRead *.ejs set filetype=eruby
   au BufNewFile,BufRead *.vcl set filetype=conf
   au BufNewFile,BufRead *.vcl.erb set filetype=conf
-  au BufNewFile,BufRead *.q set filetype=sql
   au BufNewFile,BufRead *.es6 set filetype=javascript
 
   " Tabbing rules
@@ -283,9 +283,6 @@ augroup vimrc
   au BufRead *.html set ts=2 sw=2 sts=2 expandtab
   au BufRead *.css set ts=2 sw=2 sts=2 expandtab
   au BufRead *.ru set filetype=ruby
-  au BufRead *.jsonnet set ts=2 sw=2 sts=2 expandtab
-  au BufRead *.libsonnet set ts=2 sw=2 sts=2 expandtab
-  au BufRead *.jsonnet.TEMPLATE set ft=jsonnet ts=2 sw=2 sts=2 expandtab
   au BufRead *.js set ts=2 sw=2 sts=2 expandtab
   au BufRead *.json set ts=2 sw=2 sts=2 expandtab
   au BufRead *.jst set ts=2 sw=2 sts=2 expandtab
@@ -300,17 +297,18 @@ augroup vimrc
   au FileType go nmap <leader>w <Plug>(go-doc-browser)
   au FileType go nmap <leader>b <Plug>(go-build)
 
-  au BufRead *.sls set formatoptions+=croql
-  au BufRead,BufNewFile *.go set filetype=go
-
   " Autowrap text in markdown files
   au BufRead,BufNewFile *.md setlocal textwidth=80 ts=2 sw=2 sts=2 expandtab
 
   " Bats
   au BufRead,BufNewFile *.bats set ft=sh
 
-augroup END
+  au BufNewFile,BufRead */workspace/patreon_react_features/*.js set ts=4 sw=4 sts=4
+  au BufNewFile,BufRead */workspace/patreon_react_features/*.ts set ts=4 sw=4 sts=4
+  au BufNewFile,BufRead */workspace/patreon_react_features/*.tsx set ts=4 sw=4 sts=4
+  au BufNewFile,BufRead */workspace/patreon_react_features/*.jsx set ts=4 sw=4 sts=4
+  au BufNewFile,BufRead */patreon_react_features/.circleci/*.yml set ts=4 sw=4 sts=4
 
-" syntastic + fugitive
-"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %#warningmsg#%{SyntasticStatuslineFlag()}%*\ %P
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+  au VimLeave * :call SaveSession()
+
+augroup END
