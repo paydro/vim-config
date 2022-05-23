@@ -97,3 +97,6 @@
 [submodule "pack/base/start/tabline.vim"]
 	path = pack/base/start/tabline.vim
 	url = git@github.com:paydro/tabline.vim.git
+[submodule "pack/base/start/vim-lsp-ale"]
+	path = pack/base/start/vim-lsp-ale
+	url = git@github.com:rhysd/vim-lsp-ale.git
