@@ -138,9 +138,11 @@ let g:ale_fixers = {
 
 " vim-lsp settings
 
-" let g:lsp_diagnostics_highlights_enabled = 0
+" This is annoying.
+let g:lsp_document_highlight_enabled = 0
 " Let ALE handle diagnostics
-" let g:lsp_diagnostics_enabled=0
+let g:lsp_diagnostics_enabled=0
+
 " vim-lsp javascript support
 if executable('typescript-language-server')
   au User lsp_setup call lsp#register_server({
