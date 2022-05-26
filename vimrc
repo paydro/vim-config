@@ -315,6 +315,6 @@ augroup vimrc
   au BufNewFile,BufRead */workspace/patreon_react_features/*.jsx set ts=4 sw=4 sts=4
   au BufNewFile,BufRead */patreon_react_features/.circleci/*.yml set ts=4 sw=4 sts=4
 
-  au VimLeave * :call SaveSession()
+  " au VimLeave * :call SaveSession()
 
 augroup END
