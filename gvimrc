@@ -34,8 +34,8 @@ set columns=200
 " Set font
 " set guifont=Monospace\ 9
 " set linespace=1
-set guifont=Source\ Code\ Pro\ Medium\ 10
-set linespace=-2
+set guifont=SFMono-Regular:h13
+set linespace=1
 
 " Disable to beep on errors
 set vb t_vb=

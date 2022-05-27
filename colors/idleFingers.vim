@@ -33,7 +33,7 @@ hi DiffText             guibg=#59B4CD ctermbg=028 ctermfg=254 cterm=bold
 hi ErrorMsg             guifg=#D8D8D8 guibg=#ff0000 ctermfg=255 ctermbg=196
 hi Folded               guifg=#999999 guibg=#444444 ctermfg=246 ctermbg=238
 hi FoldColumn           guifg=#e8e8e8 guibg=#222222 ctermfg=253 ctermbg=242
-hi SignColumn           guifg=#777777 guibg=#333333 ctermfg=000 ctermbg=120
+hi SignColumn           guifg=#777777 guibg=#333333 ctermfg=000 ctermbg=235
 " hi IncSearch            gui=bold guifg=#282828 guibg=#6C99BB ctermfg=0 ctermbg=188
 hi IncSearch            gui=NONE guibg=#111111 guifg=#B7DFF8 ctermfg=0 ctermbg=188
 hi LineNr               guifg=#8C8C8C guibg=#282828 cterm=NONE ctermfg=242 ctermbg=235
@@ -64,7 +64,7 @@ hi QuickFixLine         guifg=#FFFFFF guibg=#ff6565 cterm=NONE ctermfg=NONE cter
 
 hi SpellCap             term=reverse ctermbg=9 gui=undercurl guisp=#FFF980
 
-hi SpellBad             ctermfg=233 ctermbg=202 gui=undercurl guisp=Red
+hi SpellBad             cterm=undercurl ctermul=233 ctermfg=NONE ctermbg=NONE  gui=undercurl guisp=#ff6565 guibg=NONE guifg=NONE
 hi SpellCap             ctermfg=233 ctermbg=203 gui=undercurl guisp=#FFF980
 hi SpellRare            ctermfg=233 ctermbg=204 gui=undercurl guisp=Magenta
 
@@ -111,11 +111,8 @@ hi Special              guifg=#ff6347 ctermfg=203
     hi Debug            guifg=#ff0000 ctermfg=9
 
 hi Underlined           gui=underline guifg=#6C99BB
-
 hi Ignore               guifg=bg
-
-hi Error                guifg=#D8D8D8 guibg=#ff0000 ctermfg=255 ctermbg=197
-
+hi Error                guibg=#333333 guifg=#ff6565 ctermfg=255 ctermbg=197
 hi Todo                 guifg=#323232 guibg=#BC9458 ctermfg=236 ctermbg=137
 
 " Ruby syntax (via vim-rails)
@@ -208,7 +205,7 @@ hi link pythonDocstring Comment
 hi link pythonBuiltinObj Constant
 
 " Syntastic
-hi SyntasticErrorSign guifg=#ff6347 guibg=#333333
+" hi SyntasticErrorSign guifg=#ff6347 guibg=#333333
 
 " vim-lsp
 hi lspReference guibg=#111111

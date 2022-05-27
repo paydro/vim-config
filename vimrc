@@ -1,3 +1,6 @@
+syntax on
+colorscheme idleFingers
+
 set termguicolors
 if !has("gui_running")
   let &t_Cs = "\e[4:3m"
@@ -8,8 +11,6 @@ set nocompatible
 set modeline
 set modelines=5
 
-syntax on
-colorscheme idleFingers
 
 set noswapfile
 set autowrite
@@ -109,7 +110,6 @@ map <Leader>p :NERDTreeToggle<CR><C-W>=
 " See :help NERDCommenterFunctionalitySummary
 map <Leader>cc <plug>NERDCommenterToggle
 
-
 " Copy/paste with easier shortcut keys
 " Paste with CTRL+SHIFT+v
 " noremap <C-S-v> "+gP
@@ -120,7 +120,7 @@ map <Leader>cc <plug>NERDCommenterToggle
 " Select all
 noremap <C-a> ggVG
 
-let g:ale_disable_lsp = 1
+let g:ale_detail_to_floating_preview = 1
 let g:ale_linters =  {
 \ 'terraform': ['tflint'],
 \ 'python': ['flake8'],
@@ -139,6 +139,13 @@ let g:ale_fixers = {
 \  'go': ['goimports'],
 \  'terraform': ['terraform'],
 \}
+
+" Show ALE commands
+map <Leader>at <Plug>(ale_toggle)
+map <Leader>ad <Plug>(ale_detail)
+map <Leader>an <Plug>(ale_next_wrap)
+map <Leader>ap <Plug>(ale_previous_wrap)
+
 
 
 " vim-lsp settings
