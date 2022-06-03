@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -xe
+
+repo=$1
+plugin=$(basename $repo)
+
+git submodule add $repo pack/base/start/$plugin
