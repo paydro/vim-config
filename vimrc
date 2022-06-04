@@ -122,7 +122,26 @@ noremap <C-a> ggVG
 
 " Goyo
 map <Leader>gg <Esc>:Goyo<CR>
-map <Leader>gz <Esc>:Goyo 120x85%<CR>
+map <Leader>gz <Esc>:Goyo 120x100%<CR>
+map <Leader>gr <Esc>:Goyo 75%x100%<CR>
+
+function! s:goyo_enter()
+  set relativenumber
+  " set noshowmode
+  " set noshowcmd
+  " set scrolloff=999
+  " ...
+endfunction
+
+function! s:goyo_leave()
+  " set showmode
+  " set showcmd
+  " set scrolloff=5
+  " ...
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 let g:ale_detail_to_floating_preview = 1
 let g:ale_linters =  {
