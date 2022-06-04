@@ -120,6 +120,10 @@ map <Leader>cc <plug>NERDCommenterToggle
 " Select all
 noremap <C-a> ggVG
 
+" Goyo
+map <Leader>gg <Esc>:Goyo<CR>
+map <Leader>gz <Esc>:Goyo 120x85%<CR>
+
 let g:ale_detail_to_floating_preview = 1
 let g:ale_linters =  {
 \ 'terraform': ['tflint'],
