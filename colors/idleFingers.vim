@@ -214,3 +214,6 @@ hi lspReference guibg=#111111
 hi def link hclBlockType Statement
 " Don't highlight braces
 hi def link hclBraces Normal
+
+" ALE
+hi ALEWarningSign guifg=#A5C261 guibg=#333333
