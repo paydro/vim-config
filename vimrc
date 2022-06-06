@@ -248,14 +248,16 @@ let g:black_virtualenv = "~/.virtualenv/black"
 let g:pymode_options = 0 " Don't use default options
 let g:pymode_indent = 1
 let g:pymode_motion = 1
-" let g:pymode_doc = 1 " Hit 'K' for documentation
-" let g:pymode_breakpoint = 1 " use <leader>b to input breakpoint
-let g:pymode_lint = 0 " Use syntastic instead
-let g:pymode_lint_on_write = 0 " Do not lint
+let g:pymode_doc = 0 " Hit 'K' for documentation
+let g:pymode_breakpoint = 1 " use <leader>b to input breakpoint
+let g:pymode_lint = 0 " Use ALE/vim-lsp
+let g:pymode_lint_on_write = 0 " Use ALE/vim-lsp
 let g:pymode_options_colorcolumn = 0
-let g:pymode_options_max_line_length = 89
+" let g:pymode_options_max_line_length = 89
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
+let g:pymode_virtualenv = 1
+let g:pymode_run = 0 " I don't need this binding. I run code separately
 
 
 " Go settings

@@ -103,3 +103,6 @@
 [submodule "pack/base/start/goyo.vim.git"]
 	path = pack/base/start/goyo.vim.git
 	url = git@github.com:junegunn/goyo.vim.git
+[submodule "pack/base/start/python-mode.git"]
+	path = pack/base/start/python-mode.git
+	url = git@github.com:python-mode/python-mode.git
