@@ -106,3 +106,6 @@
 [submodule "pack/base/start/python-mode.git"]
 	path = pack/base/start/python-mode.git
 	url = git@github.com:python-mode/python-mode.git
+[submodule "pack/base/start/vim-gh-line.git"]
+	path = pack/base/start/vim-gh-line.git
+	url = git@github.com:ruanyl/vim-gh-line.git
