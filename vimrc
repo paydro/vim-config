@@ -85,7 +85,6 @@ endf
 
 map <F5> :call SaveSession()<CR>
 
-
 " Load files that have changed by default
 set autoread
 
@@ -133,7 +132,7 @@ map <Leader>gr <Esc>:Goyo 75%x100%<CR>
 let g:ale_detail_to_floating_preview = 1
 let g:ale_linters =  {
 \ 'terraform': ['tflint'],
-\ 'python': ['flake8'],
+\ 'python': ['flake8', 'dmypy'],
 \ 'go': ['staticcheck'],
 \}
 
@@ -156,24 +155,43 @@ map <Leader>ad <Plug>(ale_detail)
 map <Leader>an <Plug>(ale_next_wrap)
 map <Leader>ap <Plug>(ale_previous_wrap)
 
-
-
 " vim-lsp settings
+
+" Debugging
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
 " This is annoying.
 let g:lsp_document_highlight_enabled = 0
-" Let ALE handle diagnostics
-let g:lsp_diagnostics_enabled=0
 
-" vim-lsp javascript support
-if executable('typescript-language-server')
-  au User lsp_setup call lsp#register_server({
-        \ 'name': 'javascript support using typescript-language-server',
-        \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
-        \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact']
-        \ })
-endif
+let g:lsp_experimental_workspace_folders = 1
+
+" Notes:
+" * Use virtualenv pylsp instead of global one from vim-lsp-settings.
+"   pylsp must be installed in the project's virtualenv. Otherwise, it will
+"   not be able to go to definitions for 3rd part packages. This is opposite
+"   of how vim-lsp-settings wants to behave.
+" * To set true/false, use 1/0. I think this works because in python
+"   0 == False
+" * Disable all of the plugins. I'm using vim-ale and I like how  it works.
+let g:lsp_settings = {
+\   'pylsp-all': {
+\     'cmd': ['./venv/bin/pylsp', '-v', '--log-file', '/Users/pbui/pylsp.log'],
+\     'workspace_config': {
+\       'pylsp': {
+\         'configurationSources': ['flake8'],
+\         'config': {'prefer_local': 1},
+\         'plugins': {
+\           'pycodestyle': {'enabled': 0},
+\           'mccabe': {'enabled': 0},
+\           'pyflakes': {'enabled': 0},
+\           'flake8': {'enabled': 0},
+\         },
+\       },
+\     },
+\   }
+\}
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
@@ -245,10 +263,6 @@ let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_virtualenv = 1
 let g:pymode_run = 0 " I don't need this binding. I run code separately
-
-
-" Go settings
-map <Leader>i :GoImports<CR>
 
 let g:polyglot_is_disabled = {'go': 1}
 
