@@ -89,6 +89,7 @@ map <F5> :call SaveSession()<CR>
 set autoread
 
 set rtp+=/opt/homebrew/opt/fzf
+set rtp+=~/.fzf
 " NOTE: For this to find the correct files, the silver searcher must be
 " installed and the appropriate FZF environment variables should be set. See
 " ~/.profile.
