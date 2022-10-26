@@ -175,6 +175,9 @@ let g:lsp_experimental_workspace_folders = 1
 " * To set true/false, use 1/0. I think this works because in python
 "   0 == False
 " * Disable all of the plugins. I'm using vim-ale and I like how  it works.
+"
+" TODO: This only works for python projects with a virtualenv. Plain python
+" dirs will cause vim to start with errors.
 let g:lsp_settings = {
 \   'pylsp-all': {
 \     'cmd': ['./venv/bin/pylsp', '-v', '--log-file', '/Users/pbui/pylsp.log'],
