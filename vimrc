@@ -1,6 +1,8 @@
 syntax on
 colorscheme idleFingers
 
+let homedir = $HOME
+
 set termguicolors
 if !has("gui_running")
   let &t_Cs = "\e[4:3m"
@@ -181,7 +183,7 @@ let g:lsp_experimental_workspace_folders = 1
 " dirs will cause vim to start with errors.
 let g:lsp_settings = {
 \   'pylsp-all': {
-\     'cmd': ['./venv/bin/pylsp', '-v', '--log-file', '/Users/pbui/pylsp.log'],
+\     'cmd': ['./venv/bin/pylsp', '-v', '--log-file', homedir . '/pylsp.log'],
 \     'workspace_config': {
 \       'pylsp': {
 \         'configurationSources': ['flake8'],
