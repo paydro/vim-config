@@ -1,7 +1,7 @@
 syntax on
 colorscheme idleFingers
 
-let homedir = $HOME
+let HOMEDIR = $HOME
 
 set termguicolors
 if !has("gui_running")
@@ -122,10 +122,16 @@ map <Leader>qp :cp<CR>
 " noremap <C-S-v> "+gP
 " inoremap <C-S-v> <Esc>"+pa
 " Copy with CTRL+SHIFT+c
-" map <C-S-c> "+y
+noremap <C-S-c> "+y
+vnoremap <C-S-c> "+y
 
 " Select all
 noremap <C-a> ggVG
+
+" Ack commands
+" Search for word at cursor
+noremap <Leader>s :Ack <cword><CR>
+" Search for highlighted word
 
 " Goyo
 map <Leader>gg <Esc>:Goyo<CR>
@@ -183,7 +189,7 @@ let g:lsp_experimental_workspace_folders = 1
 " dirs will cause vim to start with errors.
 let g:lsp_settings = {
 \   'pylsp-all': {
-\     'cmd': ['./venv/bin/pylsp', '-v', '--log-file', homedir . '/pylsp.log'],
+\     'cmd': ['./venv/bin/pylsp', '-v', '--log-file', HOMEDIR . '/pylsp.log'],
 \     'workspace_config': {
 \       'pylsp': {
 \         'configurationSources': ['flake8'],
@@ -311,7 +317,7 @@ augroup vimrc
   autocmd BufWritePre * :%s/\s\+$//e
 
   " tw=88 to better gq comments
-  au BufNewFile,BufRead */plangrid/plangrid-forge/*.py set textwidth=88
+  " au BufNewFile,BufRead */plangrid/plangrid-forge/*.py set textwidth=88
 
   " Filetypes
   au BufNewFile,BufRead *.less set filetype=less
@@ -354,6 +360,7 @@ augroup vimrc
   au BufNewFile,BufRead */workspace/patreon_react_features/*.tsx set ts=4 sw=4 sts=4
   au BufNewFile,BufRead */workspace/patreon_react_features/*.jsx set ts=4 sw=4 sts=4
   au BufNewFile,BufRead */patreon_react_features/.circleci/*.yml set ts=4 sw=4 sts=4
+  au BufNewFile,BufRead */patreon_py/*.py set textwidth=88
 
   " au VimLeave * :call SaveSession()
 
