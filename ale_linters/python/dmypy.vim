@@ -9,7 +9,7 @@
 call ale#Set('python_dmypy_executable', 'dmypy')
 call ale#Set('python_dmypy_ignore_invalid_syntax', 0)
 call ale#Set('python_dmypy_show_notes', 1)
-call ale#Set('python_dmypy_options', ' run -- ')
+call ale#Set('python_dmypy_options', 'run --')
 call ale#Set('python_dmypy_use_global', get(g:, 'ale_use_global_executables', 0))
 call ale#Set('python_dmypy_auto_pipenv', 0)
 call ale#Set('python_dmypy_auto_poetry', 0)
