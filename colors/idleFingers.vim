@@ -34,9 +34,10 @@ hi ErrorMsg             guifg=#D8D8D8 guibg=#ff0000 ctermfg=255 ctermbg=196
 hi Folded               guifg=#999999 guibg=#444444 ctermfg=246 ctermbg=238
 hi FoldColumn           guifg=#e8e8e8 guibg=#222222 ctermfg=253 ctermbg=242
 hi SignColumn           guifg=#777777 guibg=#333333 ctermfg=000 ctermbg=235
-" hi IncSearch            gui=bold guifg=#282828 guibg=#6C99BB ctermfg=0 ctermbg=188
+hi IncSearch            gui=bold guifg=#282828 guibg=#6C99BB ctermfg=0 ctermbg=188
 hi IncSearch            gui=NONE guibg=#111111 guifg=#B7DFF8 ctermfg=0 ctermbg=188
 hi LineNr               guifg=#8C8C8C guibg=#282828 cterm=NONE ctermfg=242 ctermbg=235
+" hi LineNr               guifg=#8C8C8C guibg=#333333 cterm=NONE ctermfg=242 ctermbg=235
 hi MatchParen           guifg=#FFFFFF guibg=#666666 gui=bold ctermfg=15 ctermbg=241
 hi ModeMsg              gui=NONE
 hi MoreMsg              guifg=#5FAFD7 ctermfg=74
