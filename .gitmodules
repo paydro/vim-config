@@ -109,3 +109,6 @@
 [submodule "pack/base/start/vim-gh-line.git"]
 	path = pack/base/start/vim-gh-line.git
 	url = git@github.com:ruanyl/vim-gh-line.git
+[submodule "pack/base/start/fzf.vim.git"]
+	path = pack/base/start/fzf.vim.git
+	url = git@github.com:junegunn/fzf.vim.git
