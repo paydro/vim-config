@@ -95,7 +95,14 @@ set rtp+=~/.fzf
 " NOTE: For this to find the correct files, the silver searcher must be
 " installed and the appropriate FZF environment variables should be set. See
 " ~/.profile.
-map <Leader>t <Esc>:FZF --reverse<CR>
+" Used with basic fzf plugin.
+"map <Leader>t <Esc>:FZF --reverse<CR>
+" Used with fzf.vim plugin
+map <Leader>t <Esc>:Files<CR>
+map <Leader>u <Esc>:Buffers<CR>
+
+command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse']}), <bang>0)
+command! -bar -bang -nargs=? -complete=buffer Buffers call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({"options": ['--layout=reverse'], "placeholder": "{1}" }), <bang>0)
 
 " lcd to current file directory
 " map <Leader>d <Esc>:lcd %:p:h<CR>
