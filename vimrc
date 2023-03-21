@@ -363,11 +363,6 @@ augroup vimrc
   " Bats
   au BufRead,BufNewFile *.bats set ft=sh
 
-  au BufNewFile,BufRead */workspace/patreon_react_features/*.js set ts=4 sw=4 sts=4
-  au BufNewFile,BufRead */workspace/patreon_react_features/*.ts set ts=4 sw=4 sts=4
-  au BufNewFile,BufRead */workspace/patreon_react_features/*.tsx set ts=4 sw=4 sts=4
-  au BufNewFile,BufRead */workspace/patreon_react_features/*.jsx set ts=4 sw=4 sts=4
-  au BufNewFile,BufRead */patreon_react_features/.circleci/*.yml set ts=4 sw=4 sts=4
   au BufNewFile,BufRead */patreon_py/*.py set textwidth=88
 
   " au VimLeave * :call SaveSession()
