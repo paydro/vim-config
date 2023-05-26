@@ -112,3 +112,6 @@
 [submodule "pack/base/start/fzf.vim.git"]
 	path = pack/base/start/fzf.vim.git
 	url = git@github.com:junegunn/fzf.vim.git
+[submodule "pack/base/start/vim-helm.git"]
+	path = pack/base/start/vim-helm.git
+	url = git@github.com:towolf/vim-helm.git
