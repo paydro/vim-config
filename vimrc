@@ -130,8 +130,16 @@ map <Leader>qp :cp<CR>
 " noremap <C-S-v> "+gP
 " inoremap <C-S-v> <Esc>"+pa
 " Copy with CTRL+SHIFT+c
-noremap <C-S-c> "+y
-vnoremap <C-S-c> "+y
+if has('macunix')
+  noremap <C-S-c> "+y
+  vnoremap <C-S-c> "+y
+elseif has('unix')
+  vnoremap <C-S-c> y<cr>:call system("tmux load-buffer -", @0)<cr>gv
+endif
+
+if has('unix')
+
+endif
 
 " Select all
 noremap <C-a> ggVG
