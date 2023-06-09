@@ -115,3 +115,6 @@
 [submodule "pack/base/start/vim-helm.git"]
 	path = pack/base/start/vim-helm.git
 	url = git@github.com:towolf/vim-helm.git
+[submodule "pack/base/start/papercolor-theme.git"]
+	path = pack/base/start/papercolor-theme.git
+	url = git@github.com:NLKNguyen/papercolor-theme.git
