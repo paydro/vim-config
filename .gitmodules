@@ -118,3 +118,6 @@
 [submodule "pack/base/start/papercolor-theme.git"]
 	path = pack/base/start/papercolor-theme.git
 	url = git@github.com:NLKNguyen/papercolor-theme.git
+[submodule "pack/syntax/start/Vim-Jinja2-Syntax.git"]
+	path = pack/syntax/start/Vim-Jinja2-Syntax.git
+	url = git@github.com:Glench/Vim-Jinja2-Syntax.git
