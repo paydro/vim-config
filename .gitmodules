@@ -121,3 +121,6 @@
 [submodule "pack/syntax/start/Vim-Jinja2-Syntax.git"]
 	path = pack/syntax/start/Vim-Jinja2-Syntax.git
 	url = git@github.com:Glench/Vim-Jinja2-Syntax.git
+[submodule "pack/dist/opt/matchit"]
+	path = pack/dist/opt/matchit
+	url = git@github.com:chrisbra/matchit.git

@@ -1,6 +1,8 @@
 syntax on
 colorscheme idleFingers
 
+packadd! matchit
+
 let HOMEDIR = $HOME
 
 set termguicolors
