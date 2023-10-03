@@ -124,3 +124,6 @@
 [submodule "pack/dist/opt/matchit"]
 	path = pack/dist/opt/matchit
 	url = git@github.com:chrisbra/matchit.git
+[submodule "pack/base/start/vim-indent-object.git"]
+	path = pack/base/start/vim-indent-object.git
+	url = git@github.com:michaeljsmith/vim-indent-object.git
