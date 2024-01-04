@@ -37,6 +37,9 @@ set mouse=a
 
 filetype plugin indent on
 
+" Enable yanking to OS copy/paste
+set clipboard=unnamedplus
+
 set number
 " Show relative line numbers
 set relativenumber
