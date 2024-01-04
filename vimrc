@@ -37,9 +37,6 @@ set mouse=a
 
 filetype plugin indent on
 
-" Enable yanking to OS copy/paste
-set clipboard=unnamedplus
-
 set number
 " Show relative line numbers
 set relativenumber
@@ -139,7 +136,9 @@ if has('macunix')
   noremap <C-S-c> "+y
   vnoremap <C-S-c> "+y
 elseif has('unix')
-  vnoremap <C-S-c> y<cr>:call system("tmux load-buffer -", @0)<cr>gv
+  " vnoremap <C-S-c> y<cr>:call system("tmux load-buffer -", @0)<cr>gv
+  noremap <C-S-c> "+y
+  vnoremap <C-S-c> "+y
 endif
 
 if has('unix')
