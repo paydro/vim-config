@@ -127,3 +127,6 @@
 [submodule "pack/base/start/vim-indent-object.git"]
 	path = pack/base/start/vim-indent-object.git
 	url = git@github.com:michaeljsmith/vim-indent-object.git
+[submodule "pack/base/start/copilot.vim.git"]
+	path = pack/base/start/copilot.vim.git
+	url = git@github.com:github/copilot.vim.git
