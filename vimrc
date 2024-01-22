@@ -376,6 +376,8 @@ augroup vimrc
   au BufRead,BufNewFile *.bats set ft=sh
 
   au BufNewFile,BufRead */patreon_py/*.py set textwidth=88
+  au BufNewFile,BufRead */patreon_py/*.ts set ts=4 sw=4 sts=4 expandtab textwidth=88
+  au BufNewFile,BufRead */patreon_py/*.js set ts=4 sw=4 sts=4 expandtab textwidth=88
 
   " au VimLeave * :call SaveSession()
 
