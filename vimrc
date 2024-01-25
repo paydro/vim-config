@@ -158,35 +158,6 @@ map <Leader>gg <Esc>:Goyo<CR>
 map <Leader>gz <Esc>:Goyo 120x100%<CR>
 map <Leader>gr <Esc>:Goyo 75%x100%<CR>
 
-let g:ale_detail_to_floating_preview = 1
-let g:ale_linters =  {
-\ 'terraform': ['tflint'],
-\ 'go': ['staticcheck'],
-\}
-" \ 'python': ['flake8', 'dmypy'],
-
-let g:ale_fix_on_save=1
-
-" Disable to let vim-lsp do diagnostics
-let g:ale_disable_lsp = 1
-
-let g:ale_fixers = {
-\  '*': ['remove_trailing_lines', 'trim_whitespace'],
-\  'javascript': ['prettier'],
-\  'javascriptreact': ['prettier'],
-\  'typescript': ['prettier'],
-\  'typescriptreact': ['prettier'],
-\  'go': ['goimports'],
-\  'terraform': ['terraform'],
-\}
-" \  'python': ['black'],
-
-" Show ALE commands
-" map <Leader>at <Plug>(ale_toggle)
-" map <Leader>ad <Plug>(ale_detail)
-" map <Leader>an <Plug>(ale_next_wrap)
-" map <Leader>ap <Plug>(ale_previous_wrap)
-
 " vim-lsp settings
 
 " Debugging
@@ -205,7 +176,6 @@ let g:lsp_document_code_action_signs_delay = 100
 let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
 let g:lsp_diagnostics_virtual_text_align = "after"
 let g:lsp_diagnostics_virtual_text_wrap = "truncate"
-" let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 1
 
 let g:lsp_experimental_workspace_folders = 1
 
