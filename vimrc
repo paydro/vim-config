@@ -161,11 +161,14 @@ map <Leader>gr <Esc>:Goyo 75%x100%<CR>
 let g:ale_detail_to_floating_preview = 1
 let g:ale_linters =  {
 \ 'terraform': ['tflint'],
-\ 'python': ['flake8', 'dmypy'],
 \ 'go': ['staticcheck'],
 \}
+" \ 'python': ['flake8', 'dmypy'],
 
 let g:ale_fix_on_save=1
+
+" Disable to let vim-lsp do diagnostics
+let g:ale_disable_lsp = 1
 
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -173,16 +176,16 @@ let g:ale_fixers = {
 \  'javascriptreact': ['prettier'],
 \  'typescript': ['prettier'],
 \  'typescriptreact': ['prettier'],
-\  'python': ['black'],
 \  'go': ['goimports'],
 \  'terraform': ['terraform'],
 \}
+" \  'python': ['black'],
 
 " Show ALE commands
-map <Leader>at <Plug>(ale_toggle)
-map <Leader>ad <Plug>(ale_detail)
-map <Leader>an <Plug>(ale_next_wrap)
-map <Leader>ap <Plug>(ale_previous_wrap)
+" map <Leader>at <Plug>(ale_toggle)
+" map <Leader>ad <Plug>(ale_detail)
+" map <Leader>an <Plug>(ale_next_wrap)
+" map <Leader>ap <Plug>(ale_previous_wrap)
 
 " vim-lsp settings
 
@@ -193,6 +196,16 @@ map <Leader>ap <Plug>(ale_previous_wrap)
 
 " This is annoying.
 let g:lsp_document_highlight_enabled = 0
+
+let g:lsp_diagnostics_echo_delay = 100
+let g:lsp_diagnostics_highlights_delay = 100
+let g:lsp_diagnostics_signs_delay = 100
+let g:lsp_document_code_action_signs_delay = 100
+
+let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
+let g:lsp_diagnostics_virtual_text_align = "after"
+let g:lsp_diagnostics_virtual_text_wrap = "truncate"
+" let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 1
 
 let g:lsp_experimental_workspace_folders = 1
 
@@ -215,10 +228,6 @@ let g:lsp_settings = {
 \         'configurationSources': ['flake8'],
 \         'config': {'prefer_local': 1},
 \         'plugins': {
-\           'pycodestyle': {'enabled': 0},
-\           'mccabe': {'enabled': 0},
-\           'pyflakes': {'enabled': 0},
-\           'flake8': {'enabled': 0},
 \         },
 \       },
 \     },
@@ -231,20 +240,22 @@ function! s:on_lsp_buffer_enabled() abort
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
   nmap <buffer> gd <plug>(lsp-definition)
   nmap <buffer> <leader>d <plug>(lsp-peek-definition)
-  " nmap <buffer> gs <plug>(lsp-document-symbol-search)
-  " nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-  " nmap <buffer> gr <plug>(lsp-references)
-  " nmap <buffer> gi <plug>(lsp-implementation)
-  " nmap <buffer> gt <plug>(lsp-type-definition)
+  nmap <buffer> gs <plug>(lsp-document-symbol-search)
+  nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+  nmap <buffer> gr <plug>(lsp-references)
+  nmap <buffer> gi <plug>(lsp-implementation)
+  nmap <buffer> gt <plug>(lsp-type-definition)
   nmap <buffer> <leader>rn <plug>(lsp-rename)
-  " nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-  " nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+  nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]g <plug>(lsp-next-diagnostic)
   nmap <buffer> K <plug>(lsp-hover)
 
-  let g:lsp_format_sync_timeout = 1000
-  " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+  nmap <buffer> <leader>a <plug>(lsp-code-action-float)
 
-  " refer to doc to add more commands
+  nmap <buffer> <leader>ls <plug>(lsp-status)
+
+  let g:lsp_format_sync_timeout = 1000
+  autocmd! BufWritePre <buffer> LspDocumentFormatSync
 endfunction
 
 augroup lsp_install
@@ -335,9 +346,6 @@ augroup vimrc
 
   " Remove all trailing whitespaces when saving a file
   autocmd BufWritePre * :%s/\s\+$//e
-
-  " tw=88 to better gq comments
-  " au BufNewFile,BufRead */plangrid/plangrid-forge/*.py set textwidth=88
 
   " Filetypes
   au BufNewFile,BufRead *.less set filetype=less

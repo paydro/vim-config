@@ -25,9 +25,6 @@
 [submodule "pack/base/start/vim-textobj-user"]
 	path = pack/base/start/vim-textobj-user
 	url = git@github.com:kana/vim-textobj-user.git
-[submodule "pack/base/start/ale"]
-	path = pack/base/start/ale
-	url = git@github.com:dense-analysis/ale.git
 [submodule "pack/base/start/asyncomplete-lsp.vim"]
 	path = pack/base/start/asyncomplete-lsp.vim
 	url = git@github.com:prabirshrestha/asyncomplete-lsp.vim.git
@@ -97,9 +94,6 @@
 [submodule "pack/base/start/tabline.vim"]
 	path = pack/base/start/tabline.vim
 	url = git@github.com:paydro/tabline.vim.git
-[submodule "pack/base/start/vim-lsp-ale"]
-	path = pack/base/start/vim-lsp-ale
-	url = git@github.com:rhysd/vim-lsp-ale.git
 [submodule "pack/base/start/goyo.vim.git"]
 	path = pack/base/start/goyo.vim.git
 	url = git@github.com:junegunn/goyo.vim.git
@@ -127,9 +121,6 @@
 [submodule "pack/base/start/vim-indent-object.git"]
 	path = pack/base/start/vim-indent-object.git
 	url = git@github.com:michaeljsmith/vim-indent-object.git
-[submodule "pack/base/start/copilot.vim.git"]
-	path = pack/base/start/copilot.vim.git
-	url = git@github.com:github/copilot.vim.git
 [submodule "pack/base/start/vim-healthcheck.git"]
 	path = pack/base/start/vim-healthcheck.git
 	url = git@github.com:rhysd/vim-healthcheck.git
