@@ -196,8 +196,8 @@ let g:lsp_settings = {
 \     'workspace_config': {
 \       'pylsp': {
 \         'configurationSources': ['flake8'],
-\         'config': {'prefer_local': 1},
 \         'plugins': {
+\           'pylsp_mypy': { 'enabled': 1, 'dmypy': 1 },
 \         },
 \       },
 \     },
