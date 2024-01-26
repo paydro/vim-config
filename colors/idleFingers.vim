@@ -194,7 +194,7 @@ hi lspReference guibg=#111111
 hi LspErrorVirtualText guifg=#ff6565
 hi LspWarningVirtualText guifg=#888888
 hi LspInformationVirtualText guifg=#5FAFD7
-hi LspHintVirtualText guifg=#FFC66D
+hi LspHintVirtualText guifg=#FFC66D guibg=NONE
 
 
 " HCL

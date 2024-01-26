@@ -195,9 +195,9 @@ let g:lsp_settings = {
 \     'cmd': ['./venv/bin/pylsp', '-v', '--log-file', HOMEDIR . '/pylsp.log'],
 \     'workspace_config': {
 \       'pylsp': {
-\         'configurationSources': ['flake8'],
 \         'plugins': {
-\           'pylsp_mypy': { 'enabled': 1, 'dmypy': 1 },
+\           'pylsp_mypy': { 'enabled': 1, 'dmypy': 1, 'live_mode': 0 },
+\           'ruff': { 'enabled': 1 },
 \         },
 \       },
 \     },
@@ -212,7 +212,6 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal signcolumn=yes
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
   nmap <buffer> gd <plug>(lsp-definition)
-  nmap <buffer> <leader>d <plug>(lsp-peek-definition)
   nmap <buffer> gs <plug>(lsp-document-symbol-search)
   nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
   nmap <buffer> gr <plug>(lsp-references)
@@ -223,6 +222,7 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> ]g <plug>(lsp-next-diagnostic)
   nmap <buffer> K <plug>(lsp-hover)
 
+  nmap <buffer> <leader>d <plug>(lsp-document-diagnostics)
   nmap <buffer> <leader>a <plug>(lsp-code-action-float)
 
   nmap <buffer> <leader>ls <plug>(lsp-status)
