@@ -201,6 +201,9 @@ let g:lsp_settings = {
 \         },
 \       },
 \     },
+\   },
+\   'typescript-language-server': {
+\     'cmd': ['./cloudflare_worker/node_modules/.bin/typescript-language-server', '--stdio'],
 \   }
 \}
 

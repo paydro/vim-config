@@ -158,22 +158,6 @@ hi link cssTableAttr Constant
 
 hi sassClass guifg=#B7DFF8 ctermfg=153
 
-" Javascript syntax
-"hi javaScriptIdentifier guifg=#6C99BB ctermfg=67
-"hi javaScriptType guifg=#FFC66D ctermfg=221
-"hi javaScriptValue guifg=#6C99BB ctermfg=67
-"hi link javaScriptBraces Normal
-"hi link javaScript Normal
-"hi link javaScriptStatement Keyword
-"hi link javaScriptFunction Keyword
-
-hi coffeeObjAssign guifg=#FFF980
-" Keep parens and special ops normal
-hi link coffeeParen Normal
-hi link coffeeSpecialOp Normal
-" @vars
-hi coffeeSpecialVar guifg=#B7DFF8 ctermfg=153
-
 " NERDTree coloring
 hi treeDir guifg=#FFC66D ctermfg=221
 hi treeDirSlash guifg=#FFC66D ctermfg=221
@@ -205,16 +189,16 @@ hi link pythonStatement Keyword
 hi link pythonDocstring Comment
 hi link pythonBuiltinObj Constant
 
-" Syntastic
-" hi SyntasticErrorSign guifg=#ff6347 guibg=#333333
-
 " vim-lsp
 hi lspReference guibg=#111111
+hi LspErrorVirtualText guifg=#ff6565
+hi LspWarningVirtualText guifg=#888888
+hi LspInformationVirtualText guifg=#5FAFD7
+hi LspHintVirtualText guifg=#FFC66D
+
 
 " HCL
 hi def link hclBlockType Statement
 " Don't highlight braces
 hi def link hclBraces Normal
 
-" ALE
-hi ALEWarningSign guifg=#A5C261 guibg=#333333
