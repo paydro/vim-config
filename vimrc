@@ -195,9 +195,13 @@ let g:lsp_settings = {
 \     'cmd': ['./venv/bin/pylsp', '-v', '--log-file', HOMEDIR . '/pylsp.log'],
 \     'workspace_config': {
 \       'pylsp': {
+\         'configurationSource': ['flake8'],
 \         'plugins': {
 \           'pylsp_mypy': { 'enabled': 1, 'dmypy': 1, 'live_mode': 0 },
-\           'ruff': { 'enabled': 1 },
+\           'flake8': { 'enabled': 1, 'executable': './venv/bin/flake8' },
+\           'autopep8': { 'enabled': 0 },
+\           'mccabe': { 'enabled': 0 },
+\           'pycodestyle': { 'enabled': 0 },
 \         },
 \       },
 \     },
