@@ -202,6 +202,7 @@ let g:lsp_settings = {
 \           'autopep8': { 'enabled': 0 },
 \           'mccabe': { 'enabled': 0 },
 \           'pycodestyle': { 'enabled': 0 },
+\           'pyflakes': { 'enabled': 0 },
 \         },
 \       },
 \     },
