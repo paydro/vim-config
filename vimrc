@@ -150,7 +150,7 @@ noremap <C-a> ggVG
 
 " Ack commands
 " Search for word at cursor
-noremap <Leader>s :Ack <cword><CR>
+noremap <silent> <Leader>s :Rg <C-R><C-W><CR>
 " Search for highlighted word
 
 " Goyo
