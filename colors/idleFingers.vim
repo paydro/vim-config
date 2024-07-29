@@ -192,6 +192,8 @@ hi link pythonBuiltinObj Constant
 " vim-lsp
 hi lspReference guibg=#111111
 hi LspErrorVirtualText guifg=#ff6565
+hi link LspWarningHighlight Normal
+hi link LspErrorHighlight Normal
 hi LspWarningVirtualText guifg=#888888
 hi LspInformationVirtualText guifg=#5FAFD7
 hi LspHintVirtualText guifg=#FFC66D guibg=NONE
