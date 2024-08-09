@@ -102,11 +102,13 @@ set rtp+=~/.fzf
 " Used with fzf.vim plugin
 map <Leader>t <Esc>:Files<CR>
 map <Leader>u <Esc>:Buffers<CR>
+map <Leader>f <Esc>:RG<CR>
 
 command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse']}), <bang>0)
 command! -bar -bang -nargs=? -complete=buffer Buffers call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({"options": ['--layout=reverse'], "placeholder": "{1}" }), <bang>0)
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({"options": ['--layout=reverse']}), <bang>0)'
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --colors='path:fg:0xFF,0xC6,0x6D' --colors='match:fg:black' --colors='match:bg:0x6c,0x99,0xbb' --colors='line:fg:white' --smart-case -- ".shellescape(<q-args>), 1, fzf#vim#with_preview({'options': ['--layout=reverse']}), <bang>0)'
+command! -bang -nargs=* RG call fzf#vim#grep2("rg --column --line-number --no-heading --color=always --colors='path:fg:0xFF,0xC6,0x6D' --colors='match:fg:black' --colors='match:bg:0x6c,0x99,0xbb' --colors='line:fg:white' --smart-case -- ", <q-args>, fzf#vim#with_preview({'options': ['--layout=reverse']}), <bang>0)
 
 
 " lcd to current file directory
