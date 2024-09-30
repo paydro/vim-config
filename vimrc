@@ -237,7 +237,7 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <leader>ls <plug>(lsp-status)
 
   let g:lsp_format_sync_timeout = 1000
-  autocmd! BufWritePre <buffer> LspDocumentFormatSync
+  autocmd! BufWritePre *.py,*.sh LspDocumentFormatSync
 endfunction
 
 augroup lsp_install
