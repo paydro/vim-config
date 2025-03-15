@@ -141,8 +141,8 @@ if has('macunix')
   vnoremap <C-S-c> "+y
 elseif has('unix')
   " vnoremap <C-S-c> y<cr>:call system("tmux load-buffer -", @0)<cr>gv
-  noremap <C-S-c> "+y
-  vnoremap <C-S-c> "+y
+  noremap <C-S-c> <Plug>OSCYankVisual
+  vnoremap <C-S-c> <Plug>OSCYankVisual
 endif
 
 if has('unix')
@@ -161,6 +161,13 @@ noremap <silent> <Leader>s :Rg <C-R><C-W><CR>
 map <Leader>gg <Esc>:Goyo<CR>
 map <Leader>gz <Esc>:Goyo 120x100%<CR>
 map <Leader>gr <Esc>:Goyo 75%x100%<CR>
+
+" vim-test
+let test#strategy = "vimterminal"
+let test#python#pytest#options = '-vv'
+nmap <silent> <leader>rr :TestNearest<CR>
+nmap <silent> <leader>rf :TestFile<CR>
+nmap <silent> <leader>rl :TestLast<CR>
 
 " vim-lsp settings
 
@@ -235,6 +242,8 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <leader>a <plug>(lsp-code-action-float)
 
   nmap <buffer> <leader>ls <plug>(lsp-status)
+  nmap <buffer> <leader>le <Esc>:call lsp#enable_diagnostics_for_buffer()<CR>
+  nmap <buffer> <leader>ld <Esc>:call lsp#disable_diagnostics_for_buffer()<CR>
 
   let g:lsp_format_sync_timeout = 1000
   autocmd! BufWritePre *.py,*.sh LspDocumentFormatSync

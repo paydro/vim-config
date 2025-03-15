@@ -127,3 +127,6 @@
 [submodule "pack/base/start/vim-oscyank.git"]
 	path = pack/base/start/vim-oscyank.git
 	url = git@github.com:ojroques/vim-oscyank.git
+[submodule "pack/base/start/vim-test.git"]
+	path = pack/base/start/vim-test.git
+	url = git@github.com:vim-test/vim-test.git
