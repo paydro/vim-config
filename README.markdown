@@ -1,4 +1,4 @@
-# Paydro's vim configuration file
+# Peter's vim configuration file
 
 This is my vim configuration.
 
