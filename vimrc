@@ -46,6 +46,9 @@ set numberwidth=3
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
+" Show # of matches when searching
+set shortmess-=S
+
 " Stop blinking cursor
 " set guicursor=a:blinkon0
 
