@@ -124,10 +124,8 @@ map <Leader>n <Esc>:NERDTree %:p:h<CR>
 " (backslash)p
 map <Leader>p :NERDTreeToggle<CR><C-W>=
 
-" Override default NERDCommenter comment command to use Toggle
-" (I override <space> to clear search)
-" See :help NERDCommenterFunctionalitySummary
-map <Leader>cc <plug>NERDCommenterToggle
+" Copy file path to + register (system clipboard if enabled)
+map <Leader>cf :let @+ expandpath("%")<CR>
 
 " Quickfix bindings with <Leader>q
 map <Leader>qc :cclose<CR>
@@ -367,9 +365,6 @@ augroup vimrc
 
   au BufRead *.go set ts=4 sw=4 sts=4 noexpandtab formatoptions+=cr
   au BufRead *.tmpl set ft=gohtmltmpl ts=2 sw=2 sts=2 expandtab
-  au FileType go nmap <leader>r <Plug>(go-test)
-  au FileType go nmap <leader>w <Plug>(go-doc-browser)
-  au FileType go nmap <leader>b <Plug>(go-build)
 
   " Autowrap text in markdown files
   au BufRead,BufNewFile *.md setlocal textwidth=80 ts=2 sw=2 sts=2 expandtab
@@ -380,6 +375,9 @@ augroup vimrc
   au BufNewFile,BufRead */patreon_py/*.py set textwidth=88
   au BufNewFile,BufRead */patreon_py/*.ts set ts=4 sw=4 sts=4 expandtab textwidth=88
   au BufNewFile,BufRead */patreon_py/*.js set ts=4 sw=4 sts=4 expandtab textwidth=88
+
+
+  au BufNewFile,BufRead */ansible/playbooks/group_vars/* set ft=yaml
 
   " au VimLeave * :call SaveSession()
 
