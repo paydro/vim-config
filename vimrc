@@ -84,14 +84,6 @@ set sessionoptions-=options
 set sessionoptions-=buffers
 set sessionoptions-=blank
 
-fu! SaveSession()
-	let l:session_path="~/code/session.vim"
-	exe "mksession! " . l:session_path
-	echom "Session saved to " . l:session_path
-endf
-
-map <F5> :call SaveSession()<CR>
-
 " Load files that have changed by default
 set autoread
 
@@ -125,30 +117,19 @@ map <Leader>n <Esc>:NERDTree %:p:h<CR>
 map <Leader>p :NERDTreeToggle<CR><C-W>=
 
 " Copy file path to + register (system clipboard if enabled)
-map <Leader>cf :let @+ expandpath("%")<CR>
+map <Leader>cf :let @+ = expand("%")<CR>
+
+" Copy to clipboard in normal mode
+noremap <Leader>cc <Plug>OSCYankOperator
+
+" Copy to clipboard in visual mode
+vnoremap <Leader>cc <Plug>OSCYankVisual
 
 " Quickfix bindings with <Leader>q
 map <Leader>qc :cclose<CR>
 map <Leader>qn :cn<CR>
 map <Leader>qp :cp<CR>
 
-" Copy/paste with easier shortcut keys
-" Paste with CTRL+SHIFT+v
-" noremap <C-S-v> "+gP
-" inoremap <C-S-v> <Esc>"+pa
-" Copy with CTRL+SHIFT+c
-if has('macunix')
-  noremap <C-S-c> "+y
-  vnoremap <C-S-c> "+y
-elseif has('unix')
-  " vnoremap <C-S-c> y<cr>:call system("tmux load-buffer -", @0)<cr>gv
-  noremap <C-S-c> <Plug>OSCYankVisual
-  vnoremap <C-S-c> <Plug>OSCYankVisual
-endif
-
-if has('unix')
-
-endif
 
 " Select all
 noremap <C-a> ggVG
@@ -271,6 +252,10 @@ let NERDTreeIgnore=['\~$', '__pycache__$[[dir]]', '\.pyc$']
 
 " NERD_commenters
 let NERDSpaceDelims=1
+" Disable default mappings to allow "cc" bindings
+let NERDCreateDefaultMappings=0
+" Put back the only useful binding
+noremap <Leader>c<space> <Plug>NERDCommenterToggle
 let g:NERDCustomDelimiters = { 'sls': { 'left': '#' } }
 let NERDDefaultAlign='left'
 
