@@ -117,7 +117,7 @@ map <Leader>n <Esc>:NERDTree %:p:h<CR>
 map <Leader>p :NERDTreeToggle<CR><C-W>=
 
 " Copy file path to + register (system clipboard if enabled)
-map <Leader>cf :let @+ = expand("%")<CR>
+noremap <Leader>cf :execute 'OSCYank ' . expand('%')<CR>
 
 " Copy to clipboard in normal mode
 noremap <Leader>cc <Plug>OSCYankOperator
