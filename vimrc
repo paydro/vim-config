@@ -1,5 +1,6 @@
 syntax on
 colorscheme idleFingers
+" colorscheme PaperColor
 
 packadd! matchit
 
@@ -179,7 +180,6 @@ let g:lsp_experimental_workspace_folders = 1
 "   of how vim-lsp-settings wants to behave.
 " * To set true/false, use 1/0. I think this works because in python
 "   0 == False
-" * Disable all of the plugins. I'm using vim-ale and I like how  it works.
 "
 " TODO: This only works for python projects with a virtualenv. Plain python
 " dirs will cause vim to start with errors.
@@ -191,18 +191,19 @@ let g:lsp_settings = {
 \         'configurationSource': ['flake8'],
 \         'plugins': {
 \           'pylsp_mypy': { 'enabled': 1, 'dmypy': 1, 'live_mode': 0 },
-\           'flake8': { 'enabled': 1, 'executable': './venv/bin/flake8' },
+\           'flake8': { 'enabled': 0, 'executable': './venv/bin/flake8' },
 \           'autopep8': { 'enabled': 0 },
 \           'mccabe': { 'enabled': 0 },
 \           'pycodestyle': { 'enabled': 0 },
 \           'pyflakes': { 'enabled': 0 },
+\           'ruff': {
+\             'enabled': 1,
+\             'formatEnabled': 1,
+\           },
 \         },
 \       },
 \     },
 \   },
-\   'typescript-language-server': {
-\     'cmd': ['./cloudflare_worker/node_modules/.bin/typescript-language-server', '--stdio'],
-\   }
 \}
 
 function! s:on_lsp_buffer_enabled() abort
