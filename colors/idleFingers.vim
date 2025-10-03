@@ -165,6 +165,7 @@ hi treeDirSlash guifg=#FFC66D ctermfg=221
 " Markdown
 hi markdownCode guifg=#6C99BB ctermfg=67
 hi markdownHeadingDelimiter guifg=#FFC66D ctermfg=221
+hi mkdHeading guifg=#FFC66D ctermfg=221
 hi markdownH1 guifg=#FFC66D ctermfg=221
 hi link markdownH2 markdownH1
 hi link markdownH3 markdownH1

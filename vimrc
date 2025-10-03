@@ -316,6 +316,17 @@ let g:closetag_filetypes = 'html,xhtml,gohtmltmpl'
 let ruby_operators = 1
 let ruby_pseudo_operators = 1
 
+
+" vim-markdown settings
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
+
+augroup MarkdownTitleHighlight
+  autocmd!
+  autocmd FileType markdown highlight Title guifg=#FFC66D
+augroup END
+
 augroup vimrc
   au!
   " vim's smartindent auto-removes indentation with #. This fixes it.
@@ -354,6 +365,7 @@ augroup vimrc
 
   " Autowrap text in markdown files
   au BufRead,BufNewFile *.md setlocal textwidth=80 ts=2 sw=2 sts=2 expandtab
+  au BufRead,BufNewFile *.mdc set ft=markdown
 
   " Bats
   au BufRead,BufNewFile *.bats set ft=sh
