@@ -130,3 +130,6 @@
 [submodule "pack/base/start/vim-test.git"]
 	path = pack/base/start/vim-test.git
 	url = git@github.com:vim-test/vim-test.git
+[submodule "pack/base/start/catppuccin-vim-theme"]
+	path = pack/base/start/catppuccin-vim-theme
+	url = git@github.com:catppuccin/vim.git
