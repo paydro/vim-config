@@ -1,5 +1,6 @@
 syntax on
-colorscheme idleFingers
+" colorscheme idleFingers
+colorscheme catppuccin_mocha
 " colorscheme PaperColor
 
 packadd! matchit
