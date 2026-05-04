@@ -174,38 +174,12 @@ let g:lsp_diagnostics_virtual_text_wrap = "truncate"
 
 let g:lsp_experimental_workspace_folders = 1
 
-" Notes:
-" * Use virtualenv pylsp instead of global one from vim-lsp-settings.
-"   pylsp must be installed in the project's virtualenv. Otherwise, it will
-"   not be able to go to definitions for 3rd part packages. This is opposite
-"   of how vim-lsp-settings wants to behave.
-" * To set true/false, use 1/0. I think this works because in python
-"   0 == False
-"
-" TODO: This only works for python projects with a virtualenv. Plain python
-" dirs will cause vim to start with errors.
-let g:lsp_settings = {
-\   'pylsp-all': {
-\     'cmd': ['./venv/bin/pylsp', '-v', '--log-file', HOMEDIR . '/pylsp.log'],
-\     'workspace_config': {
-\       'pylsp': {
-\         'configurationSource': ['flake8'],
-\         'plugins': {
-\           'pylsp_mypy': { 'enabled': 1, 'dmypy': 1, 'live_mode': 0 },
-\           'flake8': { 'enabled': 0, 'executable': './venv/bin/flake8' },
-\           'autopep8': { 'enabled': 0 },
-\           'mccabe': { 'enabled': 0 },
-\           'pycodestyle': { 'enabled': 0 },
-\           'pyflakes': { 'enabled': 0 },
-\           'ruff': {
-\             'enabled': 1,
-\             'formatEnabled': 1,
-\           },
-\         },
-\       },
-\     },
-\   },
-\}
+" Allows using both pyright + ruff lsp servers for python. vim-lsp defaults to
+" one lsp server during autodetection
+let g:lsp_settings_filetype_python = ['basedpyright-langserver', 'ruff']
+
+" Ensure we use basedpyright for hovers since ruff-lsp doesn't work
+autocmd FileType python let b:lsp_hover_server = 'basedpyright-langserver'
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
@@ -230,7 +204,11 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <leader>ld <Esc>:call lsp#disable_diagnostics_for_buffer()<CR>
 
   let g:lsp_format_sync_timeout = 1000
-  autocmd! BufWritePre *.py,*.sh LspDocumentFormatSync
+
+  " Ordering is important
+  autocmd BufWritePre *.py LspCodeActionSync source.organizeImports.ruff
+  autocmd BufWritePre *.py LspCodeActionSync source.fixAll.ruff
+  autocmd BufWritePre *.py LspDocumentFormatSync --server=ruff
 endfunction
 
 augroup lsp_install
