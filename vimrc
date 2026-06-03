@@ -81,6 +81,11 @@ set backspace=2
 " Ignore node_modules in projects because they're fracking annoying.
 set wildignore+=node_modules/**,*.pyc
 
+" Command-line completion menu
+set wildmenu
+set wildmode=longest:full,full
+set wildoptions=pum,fuzzy
+
 " Don't save options. Pathogen manipulates this
 set sessionoptions-=options
 set sessionoptions-=buffers
@@ -104,7 +109,20 @@ map <Leader>f <Esc>:RG<CR>
 command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse']}), <bang>0)
 command! -bar -bang -nargs=? -complete=buffer Buffers call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({"options": ['--layout=reverse'], "placeholder": "{1}" }), <bang>0)
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({"options": ['--layout=reverse']}), <bang>0)'
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --colors='path:fg:0xFF,0xC6,0x6D' --colors='match:fg:black' --colors='match:bg:0x6c,0x99,0xbb' --colors='line:fg:white' --smart-case -- ".shellescape(<q-args>), 1, fzf#vim#with_preview({'options': ['--layout=reverse']}), <bang>0)'
+function! s:rg(args, bang) abort
+  let l:flags = "rg --column --line-number --no-heading --color=always --colors='path:fg:0xFF,0xC6,0x6D' --colors='match:fg:black' --colors='match:bg:0x6c,0x99,0xbb' --colors='line:fg:white' --smart-case -- "
+  " If the last token is a real directory, treat it as the search path and
+  " the rest as the query. Otherwise search the whole tree (rg's default).
+  let l:parts = split(a:args, ' ')
+  if len(l:parts) > 1 && isdirectory(expand(l:parts[-1]))
+    let l:query = join(l:parts[0:-2], ' ')
+    let l:cmd = l:flags . shellescape(l:query) . ' ' . shellescape(expand(l:parts[-1]))
+  else
+    let l:cmd = l:flags . shellescape(a:args)
+  endif
+  call fzf#vim#grep(l:cmd, 1, fzf#vim#with_preview({'options': ['--layout=reverse']}), a:bang)
+endfunction
+command! -bang -nargs=* -complete=dir Rg call s:rg(<q-args>, <bang>0)
 command! -bang -nargs=* RG call fzf#vim#grep2("rg --column --line-number --no-heading --color=always --colors='path:fg:0xFF,0xC6,0x6D' --colors='match:fg:black' --colors='match:bg:0x6c,0x99,0xbb' --colors='line:fg:white' --smart-case -- ", <q-args>, fzf#vim#with_preview({'options': ['--layout=reverse']}), <bang>0)
 
 
