@@ -7,9 +7,6 @@
 [submodule "pack/base/start/nerdtree"]
 	path = pack/base/start/nerdtree
 	url = git@github.com:preservim/nerdtree.git
-[submodule "pack/base/start/ultisnips"]
-	path = pack/base/start/ultisnips
-	url = git@github.com:SirVer/ultisnips.git
 [submodule "pack/base/start/vim-fugitive"]
 	path = pack/base/start/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive.git
@@ -37,12 +34,6 @@
 [submodule "pack/base/start/vim-lsp-settings"]
 	path = pack/base/start/vim-lsp-settings
 	url = git@github.com:mattn/vim-lsp-settings.git
-[submodule "pack/base/start/vim-lsp-snippets"]
-	path = pack/base/start/vim-lsp-snippets
-	url = git@github.com:thomasfaingnaert/vim-lsp-snippets.git
-[submodule "pack/base/start/vim-lsp-ultisnips"]
-	path = pack/base/start/vim-lsp-ultisnips
-	url = git@github.com:thomasfaingnaert/vim-lsp-ultisnips.git
 [submodule "pack/syntax/start/html5.vim"]
 	path = pack/syntax/start/html5.vim
 	url = git@github.com:sheerun/html5.vim.git
