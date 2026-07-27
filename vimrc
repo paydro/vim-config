@@ -5,8 +5,6 @@ colorscheme catppuccin_mocha
 
 packadd! matchit
 
-let HOMEDIR = $HOME
-
 set termguicolors
 if !has("gui_running")
   let &t_Cs = "\e[4:3m"
@@ -71,7 +69,19 @@ set nofoldenable " disable folding
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " Auto complete
+" asyncomplete drives the popup via vim-lsp. Without noinsert/noselect it
+" auto-inserts the first match as you type.
+set completeopt=menuone,noinsert,noselect,popup
+" Suppress the "match 1 of 12" churn asyncomplete generates on every keystroke
+set shortmess+=c
 inoremap <C-Space> <C-x><C-o>
+" Tab was owned by UltiSnips until it was removed, so it's free to drive the
+" completion popup now. Guarded on pumvisible() so it still indents normally.
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" With noselect above, <CR> would otherwise insert a newline while leaving the
+" highlighted match uncommitted. close_popup() returns <C-y> to accept it.
+inoremap <expr> <CR>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 
 " By default, the /usr/share/vim/vimrc sets this but it doesn't seem to work
 " with my setup. Therefore we add this setting here.
@@ -86,7 +96,8 @@ set wildmenu
 set wildmode=longest:full,full
 set wildoptions=pum,fuzzy
 
-" Don't save options. Pathogen manipulates this
+" Don't save options. Plugins manipulate 'runtimepath' and friends, so a
+" restored session would otherwise fight the current config.
 set sessionoptions-=options
 set sessionoptions-=buffers
 set sessionoptions-=blank
@@ -178,32 +189,66 @@ nmap <silent> <leader>rl :TestLast<CR>
 " let g:lsp_log_file = expand('~/vim-lsp.log')
 " let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
+" Message framing happens in C rather than viml. Self-guards on older builds
+" via lsp#utils#has_native_lsp_client(), so it's safe to set unconditionally.
+let g:lsp_use_native_client = 1
+
 " This is annoying.
 let g:lsp_document_highlight_enabled = 0
+
+" We 'set nofoldenable' above, so vim-lsp's foldexpr only costs us a callback
+" on every buffer change.
+let g:lsp_fold_enabled = 0
 
 let g:lsp_diagnostics_echo_delay = 100
 let g:lsp_diagnostics_highlights_delay = 100
 let g:lsp_diagnostics_signs_delay = 100
 let g:lsp_document_code_action_signs_delay = 100
 
+" Float rather than the echo line, which truncates long diagnostics
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_echo_cursor = 0
+
 let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
 let g:lsp_diagnostics_virtual_text_align = "after"
 let g:lsp_diagnostics_virtual_text_wrap = "truncate"
 
+" Both default off. They're the main reason to pay for basedpyright over a
+" ruff-only setup, since ruff does no type inference.
+let g:lsp_inlay_hints_enabled = 1
+let g:lsp_semantic_enabled = 1
+
+" Hoisted out of s:on_lsp_buffer_enabled(), where it was re-assigning a global
+" once per buffer. Bounds the blocking format-on-save chain below.
+let g:lsp_format_sync_timeout = 1000
+
 let g:lsp_experimental_workspace_folders = 1
+
+" vim-lsp-settings only ever reads <global_settings_dir>/settings.json. Pointing
+" it here keeps server config in version control instead of ~/.local/share.
+" Note this is independent of servers_dir, so installed servers stay put.
+let g:lsp_settings_global_settings_dir = expand('~/.vim/lsp-settings')
 
 " Allows using both pyright + ruff lsp servers for python. vim-lsp defaults to
 " one lsp server during autodetection
 let g:lsp_settings_filetype_python = ['basedpyright-langserver', 'ruff']
 
-" Ensure we use basedpyright for hovers since ruff-lsp doesn't work
-autocmd FileType python let b:lsp_hover_server = 'basedpyright-langserver'
-
 function! s:on_lsp_buffer_enabled() abort
+  " Fires once per attached server, so python (basedpyright + ruff) enters here
+  " twice for the same buffer. Guard it so the mappings and autocmds below are
+  " only installed once.
+  if get(b:, 'lsp_buffer_setup_done', 0)
+    return
+  endif
+  let b:lsp_buffer_setup_done = 1
+
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
   nmap <buffer> gd <plug>(lsp-definition)
+  " Preview in a float instead of jumping, for when you only need to glance at a
+  " definition without losing your place
+  nmap <buffer> gD <plug>(lsp-peek-definition)
   nmap <buffer> gs <plug>(lsp-document-symbol-search)
   nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
   nmap <buffer> gr <plug>(lsp-references)
@@ -217,32 +262,38 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <leader>d <plug>(lsp-document-diagnostics)
   nmap <buffer> <leader>a <plug>(lsp-code-action-float)
 
+  " Code lenses are resolved by the server but never surfaced without an
+  " explicit trigger, so they were previously unreachable
+  nmap <buffer> <leader>ll <plug>(lsp-code-lens)
+
   nmap <buffer> <leader>ls <plug>(lsp-status)
   nmap <buffer> <leader>le <Esc>:call lsp#enable_diagnostics_for_buffer()<CR>
   nmap <buffer> <leader>ld <Esc>:call lsp#disable_diagnostics_for_buffer()<CR>
 
-  let g:lsp_format_sync_timeout = 1000
-
-  " Ordering is important
-  autocmd BufWritePre *.py LspCodeActionSync source.organizeImports.ruff
-  autocmd BufWritePre *.py LspCodeActionSync source.fixAll.ruff
-  autocmd BufWritePre *.py LspDocumentFormatSync --server=ruff
+  if &filetype ==# 'python'
+    " Ordering is important. These are <buffer>-local because the previous
+    " global *.py patterns re-registered on every LSP buffer, so each :w ran the
+    " whole sync format chain once per python buffer open in the session.
+    augroup lsp_python_format
+      autocmd! * <buffer>
+      autocmd BufWritePre <buffer> LspCodeActionSync source.organizeImports.ruff
+      autocmd BufWritePre <buffer> LspCodeActionSync source.fixAll.ruff
+      autocmd BufWritePre <buffer> LspDocumentFormatSync --server=ruff
+    augroup END
+  endif
 endfunction
 
 augroup lsp_install
     au!
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+
+    " Ensure we use basedpyright for hovers since ruff-lsp doesn't work.
+    " Lives in this augroup rather than at the top level so that re-sourcing the
+    " vimrc replaces it instead of stacking another copy.
+    autocmd FileType python let b:lsp_hover_server = 'basedpyright-langserver'
 augroup END
 
-
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 let NERDTreeSortOrder=[]
 let NERDTreeShowBookmarks=1
@@ -260,12 +311,8 @@ let NERDDefaultAlign='left'
 " html indenting
 let g:html_indent_inctags = "video,source"
 
-" Disable rails.vim abbreviations
-let g:rails_no_abbreviations=0
-
 " Python settings
 " let python_highlight_all = 1
-let g:black_virtualenv = "~/.virtualenv/black"
 
 " python-mode
 let g:pymode_options = 0 " Don't use default options
@@ -281,8 +328,6 @@ let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_virtualenv = 1
 let g:pymode_run = 0 " I don't need this binding. I run code separately
-
-let g:polyglot_is_disabled = {'go': 1}
 
 "let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"

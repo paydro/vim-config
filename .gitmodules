@@ -13,9 +13,6 @@
 [submodule "pack/base/start/vim-repeat"]
 	path = pack/base/start/vim-repeat
 	url = git@github.com:tpope/vim-repeat.git
-[submodule "pack/base/start/vim-snippets"]
-	path = pack/base/start/vim-snippets
-	url = git@github.com:honza/vim-snippets.git
 [submodule "pack/base/start/vim-surround"]
 	path = pack/base/start/vim-surround
 	url = git@github.com:tpope/vim-surround.git
