@@ -215,7 +215,7 @@ let g:lsp_diagnostics_virtual_text_wrap = "truncate"
 
 " Both default off. They're the main reason to pay for basedpyright over a
 " ruff-only setup, since ruff does no type inference.
-let g:lsp_inlay_hints_enabled = 1
+let g:lsp_inlay_hints_enabled = 0
 let g:lsp_semantic_enabled = 1
 
 " Hoisted out of s:on_lsp_buffer_enabled(), where it was re-assigning a global
