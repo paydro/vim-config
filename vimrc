@@ -6,6 +6,7 @@ colorscheme catppuccin_mocha
 packadd! matchit
 
 set termguicolors
+" Should enable undercurl support
 if !has("gui_running")
   let &t_Cs = "\e[4:3m"
   let &t_Ce = "\e[4:0m"
@@ -205,18 +206,48 @@ let g:lsp_diagnostics_highlights_delay = 100
 let g:lsp_diagnostics_signs_delay = 100
 let g:lsp_document_code_action_signs_delay = 100
 
-" Float rather than the echo line, which truncates long diagnostics
+" Float diagnostics text into popup window rather than the echo line
 let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_diagnostics_echo_cursor = 0
 
+" Set this to 1 to enable in-line diagnostics.
+let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
 let g:lsp_diagnostics_virtual_text_align = "after"
 let g:lsp_diagnostics_virtual_text_wrap = "truncate"
 
-" Both default off. They're the main reason to pay for basedpyright over a
-" ruff-only setup, since ruff does no type inference.
-let g:lsp_inlay_hints_enabled = 0
-let g:lsp_semantic_enabled = 1
+" Uses virtual text for hints (like LSP errors).
+let g:lsp_inlay_hints_enabled = 1
+
+" for python, enabling this makes variables/props really annoying.
+let g:lsp_semantic_enabled = 0
+
+augroup lsp_inlay_hint_colors
+  autocmd!
+  autocmd ColorScheme * highlight link lspInlayHintsType      Comment
+  autocmd ColorScheme * highlight link lspInlayHintsParameter Comment
+augroup END
+doautocmd ColorScheme
+
+" Add undercurl to diagnostics from vim-lsp
+function! s:undercurl_from(group, source) abort
+  let l:sp = synIDattr(synIDtrans(hlID(a:source)), 'fg#')
+  execute 'highlight' a:group 'guifg=NONE guibg=NONE gui=undercurl cterm=undercurl'
+        \ 'guisp=' . (empty(l:sp) ? 'NONE' : l:sp)
+endfunction
+
+function! s:lsp_diagnostic_colors() abort
+  call s:undercurl_from('LspErrorHighlight',       'Error')
+  call s:undercurl_from('LspWarningHighlight',     'WarningMsg')
+  call s:undercurl_from('LspInformationHighlight', 'MoreMsg')
+  call s:undercurl_from('LspHintHighlight',        'Comment')
+endfunction
+
+augroup lsp_diagnostic_undercurl
+  autocmd!
+  autocmd ColorScheme * call s:lsp_diagnostic_colors()
+augroup END
+call s:lsp_diagnostic_colors()
 
 " Hoisted out of s:on_lsp_buffer_enabled(), where it was re-assigning a global
 " once per buffer. Bounds the blocking format-on-save chain below.
