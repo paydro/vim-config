@@ -2,9 +2,6 @@
   "ruff": {
     "initialization_options": {
       "settings": {
-        "lineLength": 88,
-        "lint": { "preview": true },
-        "format": { "preview": true },
         "showSyntaxErrors": false
       }
     }
